@@ -106,6 +106,10 @@ position = Vector2(1353, 791)
 [node name="damage" parent="." unique_id=1869480644 instance=ExtResource("5_n6j0u")]
 position = Vector2(1485, 728)
 
+[node name="damage2" parent="." unique_id=1927382738 instance=ExtResource("5_n6j0u")]
+visible = false
+position = Vector2(1636, 958)
+
 [node name="checkpoint" parent="." unique_id=1504211689 instance=ExtResource("6_cr1la")]
 position = Vector2(523, 628)
 
