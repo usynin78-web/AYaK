@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="ayak"
-config/tags=PackedStringArray("0.0.02", "2d", "dev", "official")
+config/tags=PackedStringArray("0.1.2", "2d", "dev", "official")
 run/main_scene="uid://bvlaetq501c7o"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 boot_splash/bg_color=Color(0, 0, 0, 1)
