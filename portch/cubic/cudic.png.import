@@ -3,17 +3,16 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bitfum873ptak"
-path.s3tc="res://.godot/imported/cudic.png-eb7b80ec8ab5cb12fb6dec005db3df5e.s3tc.ctex"
 path.etc2="res://.godot/imported/cudic.png-eb7b80ec8ab5cb12fb6dec005db3df5e.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"imported_formats": ["etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://portch/cubic/cudic.png"
-dest_files=["res://.godot/imported/cudic.png-eb7b80ec8ab5cb12fb6dec005db3df5e.s3tc.ctex", "res://.godot/imported/cudic.png-eb7b80ec8ab5cb12fb6dec005db3df5e.etc2.ctex"]
+dest_files=["res://.godot/imported/cudic.png-eb7b80ec8ab5cb12fb6dec005db3df5e.etc2.ctex"]
 
 [params]
 
