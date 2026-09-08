@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://cabe7riy2jd3s"]
+
+[ext_resource type="Script" uid="uid://ca0wtn2eiao0r" path="res://loc/roomtest/room.gd" id="1_lxy7o"]
+[ext_resource type="Texture2D" uid="uid://cmpcfdgabfrua" path="res://loc/roomtest/Без названия42_20251123133006.webp" id="2_4syoi"]
+[ext_resource type="Texture2D" uid="uid://eo0kncvs3yrg" path="res://egg/0.0.02.png" id="3_4kiou"]
+[ext_resource type="PackedScene" uid="uid://uyosw5lg634q" path="res://UI/HP/cake.tscn" id="6_6tl8d"]
+[ext_resource type="PackedScene" uid="uid://t0icfbp38p41" path="res://UI/HP/damage.tscn" id="7_grdfh"]
+[ext_resource type="PackedScene" uid="uid://dkimxk1bjfqin" path="res://loc/roomtest/checkpoint.tscn" id="8_p22pm"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_tfqo8"]
+vertices = PackedVector2Array(2223.1719, 1382.0313, -158.39063, 1385.9609, 437.47656, 728.9375, 1606.6719, 715.0469)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(433, 719, -181, 1396, 2246, 1392, 1611, 705)])
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ntlj5"]
+rough = true
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_unr6s"]
+a = Vector2(-1067, 933)
+b = Vector2(-398, 236)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0p436"]
+size = Vector2(2373, 580.5)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_tfqo8"]
+a = Vector2(589, 140)
+b = Vector2(-587, 142)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_n6j0u"]
+a = Vector2(693, 736)
+b = Vector2(21, 11)
+
+[node name="Node2D" type="Node2D" unique_id=315610404]
+script = ExtResource("1_lxy7o")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1926127692]
+offset_left = -252.0
+offset_top = -296.0
+offset_right = 2308.0
+offset_bottom = 1487.0
+texture = ExtResource("2_4syoi")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1506767114]
+position = Vector2(1406.0001, 390.99997)
+scale = Vector2(0.19262701, 0.19433595)
+texture = ExtResource("3_4kiou")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=2094974820]
+navigation_polygon = SubResource("NavigationPolygon_tfqo8")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1540922890]
+position = Vector2(1025, 605)
+disable_mode = 1
+collision_layer = 3
+collision_mask = 2
+physics_material_override = SubResource("PhysicsMaterial_ntlj5")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="StaticBody2D" unique_id=274151095]
+position = Vector2(-181, -106)
+shape = SubResource("SegmentShape2D_unr6s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=893397710]
+position = Vector2(24, 1015)
+shape = SubResource("RectangleShape2D_0p436")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D" unique_id=1464216550]
+position = Vector2(-15, -726.75)
+shape = SubResource("RectangleShape2D_0p436")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=1697055471]
+position = Vector2(-1385, 161)
+rotation = -1.5733193
+shape = SubResource("RectangleShape2D_0p436")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" unique_id=178300932]
+position = Vector2(1384, 154)
+rotation = -1.5733193
+shape = SubResource("RectangleShape2D_0p436")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D" unique_id=366787663]
+position = Vector2(0, -7)
+shape = SubResource("SegmentShape2D_tfqo8")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="StaticBody2D" unique_id=15897794]
+position = Vector2(569, 118)
+shape = SubResource("SegmentShape2D_n6j0u")
+
+[node name="cake" parent="." unique_id=570425941 instance=ExtResource("6_6tl8d")]
+position = Vector2(1353, 791)
+
+[node name="damage" parent="." unique_id=1869480644 instance=ExtResource("7_grdfh")]
+position = Vector2(1485, 728)
+
+[node name="checkpoint" parent="." unique_id=1504211689 instance=ExtResource("8_p22pm")]
+position = Vector2(523, 628)

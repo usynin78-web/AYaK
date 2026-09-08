@@ -94,11 +94,9 @@ shape = SubResource("SegmentShape2D_n6j0u")
 
 [node name="CharacterBody2D" parent="." unique_id=2057261257 instance=ExtResource("4_unr6s")]
 position = Vector2(737, 943)
-unique_id = "куб"
 
 [node name="CharacterBody2D2" parent="." unique_id=866400287 instance=ExtResource("4_unr6s")]
 position = Vector2(1412, 969)
-unique_id = "куб"
 
 [node name="cake" parent="." unique_id=570425941 instance=ExtResource("4_tfqo8")]
 position = Vector2(1353, 791)
@@ -106,11 +104,8 @@ position = Vector2(1353, 791)
 [node name="damage" parent="." unique_id=1869480644 instance=ExtResource("5_n6j0u")]
 position = Vector2(1485, 728)
 
-[node name="damage2" parent="." unique_id=1927382738 instance=ExtResource("5_n6j0u")]
-visible = false
-position = Vector2(1636, 958)
-
 [node name="checkpoint" parent="." unique_id=1504211689 instance=ExtResource("6_cr1la")]
+visible = false
 position = Vector2(523, 628)
 
 [node name="RouteRoom" type="Node2D" parent="." unique_id=1963344183]
