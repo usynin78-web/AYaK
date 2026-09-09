@@ -3,16 +3,17 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bak3uri2r6nqb"
+path.s3tc="res://.godot/imported/1748537157127.png-fafb81f8ae04eec17cdfe6ba42865c5f.s3tc.ctex"
 path.etc2="res://.godot/imported/1748537157127.png-fafb81f8ae04eec17cdfe6ba42865c5f.etc2.ctex"
 metadata={
-"imported_formats": ["etc2_astc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://animch/пустышки всех персонажей/1748537157127.png"
-dest_files=["res://.godot/imported/1748537157127.png-fafb81f8ae04eec17cdfe6ba42865c5f.etc2.ctex"]
+dest_files=["res://.godot/imported/1748537157127.png-fafb81f8ae04eec17cdfe6ba42865c5f.s3tc.ctex", "res://.godot/imported/1748537157127.png-fafb81f8ae04eec17cdfe6ba42865c5f.etc2.ctex"]
 
 [params]
 
