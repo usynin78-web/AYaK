@@ -1,8 +1,18 @@
-# Godot 4+ specific ignores
+# Godot 4+
 .godot/
-/android/
-/project.godot/
-/export_presets.cfg/
-/.tmp.driveupload
-/.tmp.drivedownload
-.gitignore (1)
+
+# .NET / C#
+bin/
+obj/
+
+# C# backup files
+*.csproj.old
+*.sln.old
+
+# Temporary files
+*.tmp
+*.temp
+
+# Temporary Drive files
+.tmp.driveupload
+.tmp.drivedownload
