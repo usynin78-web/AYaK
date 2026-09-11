@@ -17,10 +17,10 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 config/name="ayak"
 config/tags=PackedStringArray("0.1.2", "2d", "dev", "official")
 run/main_scene="uid://bvlaetq501c7o"
-config/features=PackedStringArray("4.7", "GL Compatibility")
+config/features=PackedStringArray("4.7", "C#", "GL Compatibility")
 boot_splash/bg_color=Color(0, 0, 0, 1)
-config/icon="uid://c3o5lxe3c52d0"
 boot_splash/image="uid://dy5pyvcng3vrv"
+config/icon="uid://c3o5lxe3c52d0"
 
 [autoload]
 
