@@ -6,7 +6,7 @@ extends CharacterBody2D
 @export var walk_speed := 10.0
 @export var min_wait_time := 1.0
 @export var max_wait_time := 3.0
-
+@onready var separation_manager: Node = get_tree().get_first_node_in_group("character_separation_manager")
 @onready var health_component: Node = $AnimatedSprite2D/Hurtbox/HealthComponent
 @onready var navigation: NavigationAgent2D = $NavigationAgent2D
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -17,13 +17,12 @@ var is_waiting := false
 var sway_time := 0.0
 var base_scale: Vector2
 
-
 func _ready() -> void:
     base_scale = sprite.scale
-
+    
     add_to_group("damageable")
     add_to_group("npc")
-
+        
     vision_controller.player_spotted.connect(_on_player_spotted)
     vision_controller.player_lost.connect(_on_player_lost)
 
@@ -120,14 +119,14 @@ func _move() -> void:
 
         return
 
-    # Получаем следующую точку маршрута.
-    var next_point := navigation.get_next_path_position()
+    var next_point: Vector2 = navigation.get_next_path_position()
+    var direction: Vector2 = global_position.direction_to(next_point)
 
-    # Направление к следующей точке.
-    var direction := global_position.direction_to(next_point)
+    var separation: Vector2 = Vector2.ZERO
+    if is_instance_valid(separation_manager):
+       separation = separation_manager.get_separation(self)
 
-    vision_controller.set_direction(direction)
-    velocity = direction * speed
+    velocity = direction * speed + separation
 
     if sprite.animation != "walk":
         sprite.play("walk")

@@ -27,6 +27,7 @@ config/icon="uid://c3o5lxe3c52d0"
 CheckpointManager="*res://save_manager/checkpointmanager.gd"
 ModManagere="*uid://dor11g8clajh6"
 SettingsManager="*uid://dug0rd58htyc3"
+CharacterSeparationManager="*uid://crfoye1amar0f"
 
 [display]
 

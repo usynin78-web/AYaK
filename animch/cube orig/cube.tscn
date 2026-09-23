@@ -140,9 +140,6 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3vdu5"]
 size = Vector2(134, 128)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pibpc"]
-size = Vector2(95, 17)
-
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=866400287 groups=["damageable", "npc"]]
 script = ExtResource("1_3vdu5")
 
@@ -162,10 +159,6 @@ shape = SubResource("RectangleShape2D_3vdu5")
 
 [node name="HealthComponent" type="Node" parent="AnimatedSprite2D/Hurtbox" unique_id=287995983 groups=["hp"]]
 script = ExtResource("3_66o2i")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=693544912]
-position = Vector2(-0.5, 124.5)
-shape = SubResource("RectangleShape2D_pibpc")
 
 [node name="FeetMarker" type="Marker2D" parent="." unique_id=1215854607]
 position = Vector2(0, 134)
