@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED: int = 350
+const SPEED: int = 360
 const RUN_MULTIPLIER: int = 2
 const ATTACK_COOLDOWN: float = 0.4
 
