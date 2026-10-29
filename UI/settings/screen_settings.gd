@@ -1,3 +1,4 @@
+
 extends RefCounted
 
 var settings_list: VBoxContainer
@@ -28,25 +29,26 @@ func show_settings() -> void:
 			_toggle_resolution(resolution_button)
 	)
 
-	var window_mode_button := _add_setting(
-		"Режим окна",
-		_get_window_mode_name()
-	)
+	if OS.get_name() != "Android":
+		var window_mode_button := _add_setting(
+			"Режим окна",
+			_get_window_mode_name()
+		)
 
-	window_mode_button.pressed.connect(
-		func():
-			_toggle_window_mode(window_mode_button)
-	)
+		window_mode_button.pressed.connect(
+			func():
+				_toggle_window_mode(window_mode_button)
+		)
 
-	var vsync_button := _add_setting(
-		"V-Sync (вертикальная синхронизация)",
-		_get_vsync_name()
-	)
+		var vsync_button := _add_setting(
+			"V-Sync (вертикальная синхронизация)",
+			_get_vsync_name()
+		)
 
-	vsync_button.pressed.connect(
-		func():
-			_toggle_vsync(vsync_button)
-	)
+		vsync_button.pressed.connect(
+			func():
+				_toggle_vsync(vsync_button)
+		)
 
 
 func _clear_settings() -> void:
@@ -54,7 +56,10 @@ func _clear_settings() -> void:
 		child.queue_free()
 
 
-func _add_setting(label_text: String, button_text: String) -> Button:
+func _add_setting(
+	label_text: String,
+	button_text: String
+) -> Button:
 	var label := Label.new()
 	label.text = label_text
 
