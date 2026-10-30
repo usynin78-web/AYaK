@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://c4r05idr02316" path="res://UI/ign/notification.gd" id="1_idyxa"]
 [ext_resource type="Texture2D" uid="uid://bmis750rnspm5" path="res://Gameplay object button/Notification.png" id="2_qvy1y"]
 [ext_resource type="FontFile" uid="uid://cksmuq6fd0iiv" path="res://font/Neucha forayak/Neucha-Regular.ttf" id="3_mtgh7"]
+[ext_resource type="Texture2D" uid="uid://icyf5g1c4t3" path="res://emotion/c3/он такой смешной))_20251030204633.png" id="4_mtgh7"]
+[ext_resource type="Texture2D" uid="uid://cs88ebsbawbb7" path="res://emotion/c3/Без названия33_20251029113521.png" id="5_mm2yq"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_oald3"]
 font = ExtResource("3_mtgh7")
@@ -34,9 +36,27 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -20.0
+offset_left = -238.0
 offset_top = 86.0
-offset_right = 20.0
-offset_bottom = 109.0
+offset_right = -198.0
+offset_bottom = 119.0
 grow_horizontal = 2
 label_settings = SubResource("LabelSettings_oald3")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=439146277]
+layout_mode = 0
+offset_left = 461.99997
+offset_top = -3.9999998
+offset_right = 986.0
+offset_bottom = 508.0
+scale = Vector2(0.455, 0.455)
+texture = ExtResource("4_mtgh7")
+
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=2133905726]
+layout_mode = 0
+offset_left = 461.99997
+offset_top = -3.9999998
+offset_right = 986.0
+offset_bottom = 508.0
+scale = Vector2(0.455, 0.455)
+texture = ExtResource("5_mm2yq")
