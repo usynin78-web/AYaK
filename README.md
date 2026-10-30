@@ -1,6 +1,6 @@
 # AYaK
 
-**AYaK** is an early-stage 2D game project made with **Godot**, primarily written in **GDScript**, with C# project support present in the repository.
+**AYaK** is an early-stage 2D game project made with **Godot**, primarily written in **GDScript** project support present in the repository.
 
 The project is currently in active development. The current public build is an unfinished development version, so things will change, break, and occasionally behave like they have personal grievances. That is currently part of the experience.
 
@@ -29,8 +29,6 @@ The repository contains the current development state of the project, so the `ma
 ## Development
 
 The project is developed with **Godot** and primarily uses **GDScript**.
-
-The repository also contains a C# project/solution configuration.
 
 The project structure, gameplay systems, and implementation are still changing as development continues.
 
