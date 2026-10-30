@@ -1,4 +1,3 @@
-
 extends RefCounted
 
 var settings_list: VBoxContainer

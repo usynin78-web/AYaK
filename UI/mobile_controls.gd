@@ -1,3 +1,4 @@
+
 extends Control
 
 ## Touch-only overlay that translates each mobile gesture into the existing
@@ -11,8 +12,6 @@ const JOYSTICK_ACTIONS := {
 }
 
 # Картинки мобильного управления.
-# preload() загружает ресурс из проекта и позволяет использовать его напрямую
-# из кода, без добавления отдельного узла в сцену.
 const ATTACK_TEXTURE: Texture2D = preload(
 	"res://Gameplay object button/Mob.V/Attack.png"
 )
@@ -67,6 +66,9 @@ const BUTTONS := [
 const TAP_HOLD_TIME := 0.08
 const JOYSTICK_DEADZONE := 0.18
 
+# Определяем мобильную платформу один раз при запуске.
+var is_mobile := false
+
 var joystick_finger := -1
 var joystick_value := Vector2.ZERO
 var touch_targets: Dictionary = {}
@@ -74,9 +76,9 @@ var held_actions: Dictionary = {}
 
 
 func _ready() -> void:
-	# Platform detection, rather than screen size, keeps the overlay disabled on PCs.
-	var is_mobile := OS.get_name() in ["Android", "iOS"]
+	is_mobile = OS.get_name() in ["Android", "iOS"]
 
+	# На ПК мобильное управление не используется.
 	visible = is_mobile
 	set_process_input(is_mobile)
 
@@ -89,7 +91,20 @@ func _exit_tree() -> void:
 
 
 func _input(event: InputEvent) -> void:
+	if not is_mobile:
+		return
+
+	# Физическая клавиатура: скрываем мобильное управление.
+	if event is InputEventKey and event.pressed and not event.echo:
+		if visible:
+			_hide_mobile_ui()
+		return
+
+	# Сенсорный ввод: возвращаем мобильное управление.
 	if event is InputEventScreenTouch:
+		if not visible:
+			_show_mobile_ui()
+
 		if event.pressed:
 			_handle_touch_pressed(event.index, event.position)
 		else:
@@ -97,6 +112,18 @@ func _input(event: InputEvent) -> void:
 
 	elif event is InputEventScreenDrag and event.index == joystick_finger:
 		_update_joystick(event.position)
+
+
+func _hide_mobile_ui() -> void:
+	_release_all_actions()
+
+	visible = false
+	queue_redraw()
+
+
+func _show_mobile_ui() -> void:
+	visible = true
+	queue_redraw()
 
 
 func _handle_touch_pressed(finger: int, position: Vector2) -> void:
@@ -213,6 +240,11 @@ func _release_all_actions() -> void:
 
 	held_actions.clear()
 
+	# Сбрасываем информацию о текущих касаниях.
+	joystick_finger = -1
+	joystick_value = Vector2.ZERO
+	touch_targets.clear()
+
 
 func _is_in_joystick(position: Vector2) -> bool:
 	return _joystick_center().distance_to(position) <= _joystick_radius() * 1.35
@@ -275,7 +307,10 @@ func _button_center(id: String) -> Vector2:
 
 
 func _draw() -> void:
-	# Большой джойстик в оригинальном размере картинки.
+	if not is_mobile or not visible:
+		return
+
+	# Большой джойстик.
 	var joystick_center := _joystick_center()
 
 	draw_texture(
@@ -283,7 +318,7 @@ func _draw() -> void:
 		joystick_center - JOYSTICK_BASE_TEXTURE.get_size() / 2.0
 	)
 
-	# Маленький джойстик в оригинальном размере картинки.
+	# Маленький джойстик.
 	var handle_center := (
 		joystick_center + joystick_value * _joystick_radius()
 	)
@@ -293,7 +328,7 @@ func _draw() -> void:
 		handle_center - JOYSTICK_HANDLE_TEXTURE.get_size() / 2.0
 	)
 
-	# Кнопки в оригинальном размере PNG.
+	# Кнопки управления.
 	for button in BUTTONS:
 		var id: String = button["id"]
 		var center := _button_center(id)
