@@ -4,8 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://ch7xex51hk6aa" path="res://loc/roomtest/room.tscn" id="2_ylkyd"]
 [ext_resource type="PackedScene" uid="uid://b8lfkrsaj8rb3" path="res://animch/c3/c3.tscn" id="3_igtjs"]
 [ext_resource type="PackedScene" uid="uid://cfjm7vprwitbq" path="res://UI/HP/hp.tscn" id="4_0n8at"]
+[ext_resource type="PackedScene" uid="uid://mjfvks3ss7is" path="res://UI/ign/notification.tscn" id="5_fa5je"]
 [ext_resource type="Script" uid="uid://diwvg5vkk2jr1" path="res://UI/dev/debug.gd" id="5_ylkyd"]
-[ext_resource type="Script" path="res://UI/mobile_controls.gd" id="6_mobile"]
+[ext_resource type="Script" uid="uid://dsjmm7jq1qu3f" path="res://UI/mobile_controls.gd" id="6_mobile"]
+[ext_resource type="Script" uid="uid://c4r05idr02316" path="res://UI/ign/notification.gd" id="6_x52ke"]
 
 [sub_resource type="Animation" id="Animation_sjkhc"]
 resource_name = "fade_out"
@@ -39,10 +41,14 @@ position = Vector2(982.00006, 584.00006)
 
 [node name="hp" parent="UI" unique_id=173979953 instance=ExtResource("4_0n8at")]
 
-[node name="MobileControls" type="CanvasLayer" parent="."]
-layer = 1
+[node name="Notification" parent="UI" unique_id=1139987168 instance=ExtResource("5_fa5je")]
+offset_top = -9.0
+offset_bottom = -9.0
+script = ExtResource("6_x52ke")
 
-[node name="TouchOverlay" type="Control" parent="MobileControls"]
+[node name="MobileControls" type="CanvasLayer" parent="." unique_id=389121593]
+
+[node name="TouchOverlay" type="Control" parent="MobileControls" unique_id=916880554]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

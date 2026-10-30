@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://mjfvks3ss7is"]
+
+[ext_resource type="Script" uid="uid://c4r05idr02316" path="res://UI/ign/notification.gd" id="1_idyxa"]
+[ext_resource type="Texture2D" uid="uid://bmis750rnspm5" path="res://Gameplay object button/Notification.png" id="2_qvy1y"]
+[ext_resource type="FontFile" uid="uid://cksmuq6fd0iiv" path="res://font/Neucha forayak/Neucha-Regular.ttf" id="3_mtgh7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_oald3"]
+font = ExtResource("3_mtgh7")
+font_size = 30
+font_color = Color(0, 0, 0, 1)
+
+[node name="Notification" type="Control" unique_id=1139987168]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_idyxa")
+
+[node name="Frame" type="TextureRect" parent="." unique_id=129228843]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -427.5
+offset_right = 427.5
+offset_bottom = 185.0
+grow_horizontal = 2
+texture = ExtResource("2_qvy1y")
+
+[node name="Message" type="Label" parent="." unique_id=1269915276]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 86.0
+offset_right = 20.0
+offset_bottom = 109.0
+grow_horizontal = 2
+label_settings = SubResource("LabelSettings_oald3")
