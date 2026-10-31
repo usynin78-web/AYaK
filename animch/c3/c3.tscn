@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://kc2o71sh7hed" path="res://UI/ign/1000023051-0.png" id="6_unj4r"]
 [ext_resource type="Script" uid="uid://cki6wsdfcsk5k" path="res://animch/c3/camera_2d.gd" id="6_ybg5m"]
 [ext_resource type="Script" uid="uid://cy1quoywrcnyq" path="res://animch/c3/health_component.gd" id="7_m3ot0"]
+[ext_resource type="Script" uid="uid://blcg7ahkrjct0" path="res://animch/c3/motivation_component.gd" id="9_m3dj3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7d080"]
 radius = 17.78717
@@ -267,7 +268,11 @@ frame_progress = 0.51979154
 [node name="HealthComponent" type="Node" parent="." unique_id=1173980121 groups=["hp"]]
 script = ExtResource("7_m3ot0")
 
+[node name="MotivationComponent" type="Node" parent="." unique_id=935559687 groups=["mtv"]]
+script = ExtResource("9_m3dj3")
+
 [node name="Marker2D" type="Marker2D" parent="." unique_id=1037836085]
 position = Vector2(0, 273.33334)
 
 [connection signal="health_changed" from="HealthComponent" to="HealthComponent" method="_on_health_changed"]
+[connection signal="motivation_changed" from="MotivationComponent" to="MotivationComponent" method="_on_motivation_changed"]

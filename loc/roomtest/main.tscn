@@ -7,7 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://mjfvks3ss7is" path="res://UI/ign/notification.tscn" id="5_fa5je"]
 [ext_resource type="Script" uid="uid://diwvg5vkk2jr1" path="res://UI/dev/debug.gd" id="5_ylkyd"]
 [ext_resource type="Script" uid="uid://dsjmm7jq1qu3f" path="res://UI/mobile_controls.gd" id="6_mobile"]
-[ext_resource type="Script" uid="uid://c4r05idr02316" path="res://UI/ign/notification.gd" id="6_x52ke"]
+[ext_resource type="Script" uid="uid://dx6n1x06skpwu" path="res://UI/mtv/mtv.gd" id="6_owyje"]
+[ext_resource type="Texture2D" uid="uid://cyuy5usrmxm8u" path="res://UI/mtv/Без названия98_20260329021704.png" id="7_yixg8"]
+[ext_resource type="Texture2D" uid="uid://bmhjewfauf02i" path="res://UI/mtv/Без названия98_20260329020449.png" id="8_wi4bb"]
+[ext_resource type="Texture2D" uid="uid://uoadrdgkdg4o" path="res://UI/mtv/Без названия98_20260603014002.png" id="9_cxcrd"]
 
 [sub_resource type="Animation" id="Animation_sjkhc"]
 resource_name = "fade_out"
@@ -44,7 +47,22 @@ position = Vector2(982.00006, 584.00006)
 [node name="Notification" parent="UI" unique_id=1139987168 instance=ExtResource("5_fa5je")]
 offset_top = -9.0
 offset_bottom = -9.0
-script = ExtResource("6_x52ke")
+
+[node name="mtv" type="Control" parent="UI" unique_id=402673828 groups=["mtv"]]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_owyje")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="UI/mtv" unique_id=1280865112]
+layout_mode = 0
+offset_top = 86.0
+offset_right = 378.0
+offset_bottom = 165.0
+texture_under = ExtResource("7_yixg8")
+texture_over = ExtResource("8_wi4bb")
+texture_progress = ExtResource("9_cxcrd")
 
 [node name="MobileControls" type="CanvasLayer" parent="." unique_id=389121593]
 
