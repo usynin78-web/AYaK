@@ -6,7 +6,7 @@ The project is currently in active development. The current public build is an u
 
 ## Current status
 
-The latest public release is **v0.1.1-dev**. It is a prerelease development build and is still very early and unfinished.
+The latest public release is **v0.1.2-dev**. It is a prerelease development build and is still very early and unfinished.
 
 The `v0.1.1-dev` release includes the basic foundations of the game:
 
