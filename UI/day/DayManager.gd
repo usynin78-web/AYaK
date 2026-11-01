@@ -21,7 +21,7 @@ func _ready() -> void:
 	add_to_group("day_manager")
 
 	if day_transition == null:
-		push_error("DayTransition не назначен!")
+		push_error(tr("DayTransition не назначен!"))
 		return
 
 	# Сразу показываем чёрный экран.
