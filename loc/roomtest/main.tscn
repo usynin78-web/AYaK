@@ -71,6 +71,7 @@ script = ExtResource("6_mobile")
 [node name="FadeLayer" type="CanvasLayer" parent="." unique_id=30316155]
 
 [node name="ColorRect" type="ColorRect" parent="FadeLayer" unique_id=573274141]
+mouse_filter = 2
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
