@@ -1,3 +1,4 @@
+
 extends CharacterBody2D
 
 @export var unique_id: String = ""
@@ -28,14 +29,20 @@ func _ready() -> void:
 	vision_controller.player_spotted.connect(_on_player_spotted)
 	vision_controller.player_lost.connect(_on_player_lost)
 
+	# Создаём постоянный идентификатор NPC.
 	unique_id = str(get_path())
 
+	# Проверяем, не был ли NPC уничтожен ранее.
 	if CheckpointManager.removed_objects.has(unique_id):
 		queue_free()
 		return
 
+	# Загружаем последнюю сохранённую позицию NPC.
 	if CheckpointManager.npc_positions.has(unique_id):
 		global_position = CheckpointManager.npc_positions[unique_id]
+
+	# Регистрируем исходную позицию NPC.
+	CheckpointManager.register_npc_start_position(self)
 
 	health_component.health_changed.connect(_on_health_changed)
 	health_component.died.connect(_on_died)
@@ -89,6 +96,7 @@ func hit_effect() -> void:
 
 
 func _on_died() -> void:
+	# Запоминаем уничтоженного NPC.
 	CheckpointManager.removed_objects[unique_id] = true
 	queue_free()
 
@@ -112,7 +120,7 @@ func _move() -> void:
 	if is_waiting:
 		return
 
-	# Проверяем, дошли ли мы до конца.
+	# Проверяем, дошли ли до конца пути.
 	if navigation.is_navigation_finished():
 		velocity = Vector2.ZERO
 

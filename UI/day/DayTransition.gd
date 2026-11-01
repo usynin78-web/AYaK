@@ -1,3 +1,4 @@
+
 extends Control
 
 @onready var background: ColorRect = $Background
@@ -6,10 +7,10 @@ extends Control
 # Длительность появления и исчезновения текста.
 @export var text_fade_duration: float = 1.0
 
-# Длительность появления и исчезновения фона.
+# Длительность исчезновения фона.
 @export var background_fade_duration: float = 1.0
 
-# Время, в течение которого надпись остаётся на экране.
+# Время отображения надписи.
 @export var hold_duration: float = 1.5
 
 # Начальное смещение текста вниз.
@@ -23,17 +24,21 @@ var label_start_position: Vector2
 
 
 func _ready() -> void:
-	# Заставка продолжает работать во время паузы.
+	# Заставка работает даже во время паузы.
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
 	label_start_position = day_label.position
 
+	# Подготавливаем чёрный экран.
 	background.color = Color.BLACK
 	background.modulate.a = 1.0
 
+	# Текст пока невидим.
 	day_label.modulate.a = 0.0
 
-	hide()
+	# Не скрываем Control!
+	# Чёрный экран должен закрывать игру с первого кадра.
+	show()
 
 
 # Показывает заставку нового дня.
@@ -43,7 +48,7 @@ func show_day(day_number: int) -> void:
 
 	day_label.text = "ДЕНЬ " + str(day_number).pad_zeros(2)
 
-	# Подготавливаем чёрный фон.
+	# Возвращаем чёрный фон.
 	background.modulate.a = 1.0
 
 	# Подготавливаем текст.
@@ -54,7 +59,7 @@ func show_day(day_number: int) -> void:
 
 	animation_tween = create_tween()
 
-	# Плавно проявляем надпись и перемещаем её вверх.
+	# Проявляем надпись и поднимаем её.
 	animation_tween.tween_property(
 		day_label,
 		"modulate:a",
@@ -69,10 +74,10 @@ func show_day(day_number: int) -> void:
 		text_fade_duration
 	).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 
-	# Оставляем надпись на экране.
+	# Удерживаем надпись.
 	animation_tween.tween_interval(hold_duration)
 
-	# Сначала скрываем только надпись.
+	# Скрываем текст.
 	animation_tween.tween_property(
 		day_label,
 		"modulate:a",
@@ -80,7 +85,7 @@ func show_day(day_number: int) -> void:
 		text_fade_duration
 	).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
 
-	# Затем растворяем чёрный фон.
+	# Растворяем чёрный фон.
 	animation_tween.tween_property(
 		background,
 		"modulate:a",
@@ -91,6 +96,7 @@ func show_day(day_number: int) -> void:
 	# Ждём завершения анимации.
 	await animation_tween.finished
 
+	# Скрываем заставку.
 	hide()
 
 	# Возвращаем фон в исходное состояние.
