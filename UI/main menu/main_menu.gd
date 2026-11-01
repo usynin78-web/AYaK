@@ -49,7 +49,7 @@ func _on_start_pressed():
 		
 		tree.change_scene_to_file("res://loc/roomtest/main.tscn")
 	else:
-		push_error("SceneTree не найден")
+		push_error(tr("SceneTree не найден"))
 
 func _on_continue_pressed() -> void:
 	var tree := get_tree()
@@ -58,7 +58,7 @@ func _on_continue_pressed() -> void:
 	if tree:
 		tree.change_scene_to_file("res://loc/roomtest/main.tscn")
 	else:
-		push_error("SceneTree не найден")
+		push_error(tr("SceneTree не найден"))
 
 func _on_setting_pressed() -> void:
 	get_tree().change_scene_to_file("res://UI/settings/setting.tscn")
