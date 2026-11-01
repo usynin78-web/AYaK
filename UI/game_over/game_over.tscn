@@ -83,7 +83,7 @@ text = "Начать заново"
 
 [node name="menu" type="Button" parent="VBoxContainer" unique_id=1690512431]
 layout_mode = 2
-accessibility_name = "Начать заново"
+accessibility_name = "В главное меню"
 theme = SubResource("Theme_wjdna")
 theme_type_variation = &"FlatButton"
 text = "В главное меню"
