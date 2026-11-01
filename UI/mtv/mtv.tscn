@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://crhoo7lvuoxwe"]
+
+[ext_resource type="Script" uid="uid://dx6n1x06skpwu" path="res://UI/mtv/mtv.gd" id="1_xyqqh"]
+[ext_resource type="Texture2D" uid="uid://cyuy5usrmxm8u" path="res://UI/mtv/Без названия98_20260329021704.png" id="2_cfc3j"]
+[ext_resource type="Texture2D" uid="uid://bmhjewfauf02i" path="res://UI/mtv/Без названия98_20260329020449.png" id="3_7sisv"]
+[ext_resource type="Texture2D" uid="uid://uoadrdgkdg4o" path="res://UI/mtv/Без названия98_20260603014002.png" id="4_8hu50"]
+
+[node name="mtv" type="Control" unique_id=1657242017 groups=["mtv"]]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_xyqqh")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=72036629]
+layout_mode = 0
+offset_top = 86.0
+offset_right = 378.0
+offset_bottom = 165.0
+texture_under = ExtResource("2_cfc3j")
+texture_over = ExtResource("3_7sisv")
+texture_progress = ExtResource("4_8hu50")
