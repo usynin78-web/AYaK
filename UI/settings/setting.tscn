@@ -69,6 +69,16 @@ theme = ExtResource("3_vknp2")
 theme_override_font_sizes/font_size = 63
 text = "Графика"
 
+[node name="language" type="Button" parent="LeftPanel"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 230.0
+offset_right = 479.0
+offset_bottom = 320.0
+theme = ExtResource("3_vknp2")
+theme_override_font_sizes/font_size = 55
+text = "Язык: Русский"
+
 [node name="exit_to_menu" type="Button" parent="LeftPanel" unique_id=1270665881]
 layout_mode = 0
 offset_left = 38.000004
