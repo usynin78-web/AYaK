@@ -6,6 +6,7 @@ extends Control
 @onready var exit_button: Button = $VBoxContainer/exit
 @onready var setting_button: Button = $VBoxContainer/setting
 @onready var loading_screen: AnimatedSprite2D = $loading
+@onready var start_prompt: Label = $TextureRect/Label
 
 var started: bool = false
 
@@ -20,6 +21,22 @@ func _ready() -> void:
 	continue_button.pressed.connect(_on_continue_pressed)
 	exit_button.pressed.connect(_on_exit_pressed)
 	setting_button.pressed.connect(_on_setting_pressed)
+
+	if not LocalisationManager.locale_changed.is_connected(_on_locale_changed):
+		LocalisationManager.locale_changed.connect(_on_locale_changed)
+	_refresh_translated_text()
+
+func _refresh_translated_text() -> void:
+	start_prompt.text = tr("Press any key to start")
+	start_button.text = tr("Начать")
+	continue_button.text = tr("Продолжить")
+	setting_button.text = tr("Настройки")
+	exit_button.text = tr("Выйти")
+
+
+func _on_locale_changed(_locale: String) -> void:
+	_refresh_translated_text()
+
 
 func _input(event: InputEvent) -> void:
 	if started:
