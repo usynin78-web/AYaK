@@ -30,7 +30,9 @@ Y: %d
 		Engine.get_frames_per_second(),
 		int(player.global_position.x),
 		int(player.global_position.y),
+		tr("Локация"),
 		room.location_id,
+		tr("ДЕНЬ"),
 		current_day
 	]
 
