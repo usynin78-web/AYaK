@@ -61,8 +61,8 @@ offset_top = -87.0
 offset_right = 508.0
 grow_horizontal = 2
 grow_vertical = 0
-accessibility_name = "Сохранение успешно выполенено"
-text = "Сохранение успешно выполенено"
+accessibility_name = "Сохранение успешно выполнено"
+text = "Сохранение успешно выполнено"
 label_settings = SubResource("LabelSettings_510ut")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=1162449241]
@@ -71,7 +71,7 @@ offset_left = 94.0
 offset_top = -186.0
 offset_right = 189.0
 offset_bottom = -54.0
-accessibility_name = "press to E"
+accessibility_name = "Нажмите E"
 texture = ExtResource("3_38c4i")
 
 [node name="Label" type="Label" parent="CanvasLayer/TextureRect" unique_id=624977813]
@@ -80,7 +80,7 @@ offset_left = 103.0
 offset_top = 34.0
 offset_right = 341.0
 offset_bottom = 99.0
-accessibility_name = "save"
+accessibility_name = "Сохранить"
 text = "Сохранить"
 label_settings = SubResource("LabelSettings_q30nc")
 
