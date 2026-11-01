@@ -12,14 +12,14 @@ func _ready() -> void:
 	var player = get_tree().get_first_node_in_group("player")
 
 	if player == null:
-		push_error("Игрок не найден в группе player.")
+		push_error(tr("Игрок не найден в группе player."))
 		return
 
 	# Получаем компонент мотивации игрока.
 	motivation_component = player.get_node_or_null("MotivationComponent")
 
 	if motivation_component == null:
-		push_error("MotivationComponent не найден у игрока.")
+		push_error(tr("MotivationComponent не найден у игрока."))
 		return
 
 	# Подключаемся к сигналу изменения мотивации.
