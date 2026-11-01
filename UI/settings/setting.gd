@@ -3,6 +3,7 @@ extends Control
 const ScreenSettings = preload("res://UI/settings/screen_settings.gd")
 const GraphicSettings = preload("res://UI/settings/graphic_settings.gd")
 
+@onready var title_label: Label = $Label
 @onready var settings_list: VBoxContainer = $RightPanel/ScrollContainer/SettingsList
 @onready var screen_button: Button = $LeftPanel/screen
 @onready var graphic_button: Button = $LeftPanel/graphic
@@ -27,7 +28,7 @@ func _ready() -> void:
 	if not LocalisationManager.locale_changed.is_connected(_on_locale_changed):
 		LocalisationManager.locale_changed.connect(_on_locale_changed)
 
-	language_button.text = _get_language_button_text()
+	_refresh_static_text()
 	_show_screen_settings()
 
 
@@ -42,8 +43,17 @@ func _toggle_language() -> void:
 	LocalisationManager.set_locale(next_locale)
 
 
-func _on_locale_changed(_locale: String) -> void:
+func _refresh_static_text() -> void:
+	# Reapply each scene label from its source key after a locale change.
+	title_label.text = tr("Настройки")
+	screen_button.text = tr("Экран")
+	graphic_button.text = tr("Графика")
+	exit_button.text = tr("В меню")
 	language_button.text = _get_language_button_text()
+
+
+func _on_locale_changed(_locale: String) -> void:
+	_refresh_static_text()
 
 	# Rebuild dynamic settings so their labels and values use the new locale.
 	if showing_graphics:
