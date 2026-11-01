@@ -1,0 +1,37 @@
+key,en
+NEW_GAME,New Game
+CONTINUE,Continue
+SETTINGS,Settings
+EXIT,Quit
+PRESS_ANY_KEY,Press any key to start
+SCREEN,Screen
+GRAPHICS,Graphics
+BACK_TO_MENU,Back to Menu
+RESOLUTION,Resolution
+WINDOW_MODE,Window Mode
+VSYNC,V-Sync (Vertical Sync)
+WINDOWED,Windowed
+FULLSCREEN,Fullscreen
+BORDERLESS,Borderless
+UNKNOWN,Unknown
+FPS_DISPLAY,FPS Display
+FPS_LIMIT,FPS Limit
+ON,On
+OFF,Off
+UNLIMITED,Unlimited
+SAVE_SUCCESS,Game saved successfully
+YOU_DIED,YOU DIED
+RESTART,Restart
+MAIN_MENU,Main Menu
+GAME_OVER_TITLE,What a Good Start
+GAME_OVER_SUBTITLE,Too Bad It Was Brief
+DAY_PREFIX,DAY
+LOCATION,Location
+PLAYER_NOT_FOUND,Player not found.
+HP_COMPONENT_NOT_FOUND,HealthComponent not found.
+MOTIVATION_COMPONENT_NOT_FOUND,Player MotivationComponent not found.
+CHECKPOINT_NOT_ASSIGNED,E_icon is not assigned!
+SAVE_LABEL_NOT_ASSIGNED,SaveLabel is not assigned!
+CHECKPOINT_PLAYER_NOT_FOUND,Player not found!
+CHECKPOINT_HP_NOT_FOUND,HealthComponent not found!
+SCENE_TREE_NOT_FOUND,SceneTree not found
