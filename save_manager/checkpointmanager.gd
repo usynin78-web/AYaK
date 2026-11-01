@@ -108,7 +108,7 @@ func save_initial_world_state() -> void:
 	var err := config.save(SAVE_FILE)
 
 	if err != OK:
-		push_error("Не удалось сохранить исходные позиции мира!")
+		push_error(tr("Не удалось сохранить исходные позиции мира!"))
 
 
 # Запоминает исходные позиции после загрузки основной сцены.
@@ -129,7 +129,7 @@ func capture_initial_world_state() -> void:
 # Здоровье, мотивацию и удалённые объекты не изменяет.
 func reset_world() -> void:
 	if not player_start_registered:
-		push_error("Не зарегистрирована исходная позиция Кира!")
+		push_error(tr("Не зарегистрирована исходная позиция Кира!"))
 		return
 
 	var player = get_tree().get_first_node_in_group("player")
@@ -221,7 +221,7 @@ func save_checkpoint(pos: Vector2, hp: int) -> void:
 	var err := config.save(SAVE_FILE)
 
 	if err != OK:
-		push_error("Не удалось сохранить чекпоинт на диск!")
+		push_error(tr("Не удалось сохранить чекпоинт на диск!"))
 	else:
 		print(
 			"Чекпоинт сохранён: ",
@@ -328,7 +328,7 @@ func clear_save() -> void:
 		var err := DirAccess.remove_absolute(SAVE_FILE)
 
 		if err != OK:
-			push_error("Не удалось удалить файл сохранения!")
+			push_error(tr("Не удалось удалить файл сохранения!"))
 
 	print("Все сохранения и данные о мире очищены.")
 
