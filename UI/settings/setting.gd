@@ -1,7 +1,9 @@
+
 extends Control
 
 const ScreenSettings = preload("res://UI/settings/screen_settings.gd")
 const GraphicSettings = preload("res://UI/settings/graphic_settings.gd")
+const LanguageSettings = preload("res://UI/settings/language_settings.gd")
 
 @onready var title_label: Label = $Label
 @onready var settings_list: VBoxContainer = $RightPanel/ScrollContainer/SettingsList
@@ -10,21 +12,30 @@ const GraphicSettings = preload("res://UI/settings/graphic_settings.gd")
 @onready var exit_button: Button = $LeftPanel/exit_to_menu
 @onready var language_button: Button = $LeftPanel/language
 
-var screen_settings: RefCounted
-var graphic_settings: Node
-var showing_graphics: bool = false
+var screen_settings
+var graphic_settings
+var language_settings
+
+# Запоминает открытую вкладку.
+var current_tab: String = "screen"
 
 
 func _ready() -> void:
+	# Создаём модули настроек.
 	screen_settings = ScreenSettings.new(settings_list)
+
 	graphic_settings = GraphicSettings.new()
 	graphic_settings.setup(settings_list)
 
+	language_settings = LanguageSettings.new(settings_list)
+
+	# Подключаем кнопки боковой панели.
 	screen_button.pressed.connect(_show_screen_settings)
 	graphic_button.pressed.connect(_show_graphic_settings)
+	language_button.pressed.connect(_show_language_settings)
 	exit_button.pressed.connect(_show_exit_settings)
-	language_button.pressed.connect(_toggle_language)
 
+	# Подписываемся на изменение языка.
 	if not LocalisationManager.locale_changed.is_connected(_on_locale_changed):
 		LocalisationManager.locale_changed.connect(_on_locale_changed)
 
@@ -32,45 +43,46 @@ func _ready() -> void:
 	_show_screen_settings()
 
 
-func _get_language_button_text() -> String:
-	if LocalisationManager.current_locale == "ru":
-		return tr("Язык: Русский")
-	return tr("Язык: Английский")
-
-
-func _toggle_language() -> void:
-	var next_locale := "en" if LocalisationManager.current_locale == "ru" else "ru"
-	LocalisationManager.set_locale(next_locale)
-
-
+# Обновляет надписи боковой панели и заголовок.
 func _refresh_static_text() -> void:
-	# Reapply each scene label from its source key after a locale change.
 	title_label.text = tr("Настройки")
 	screen_button.text = tr("Экран")
 	graphic_button.text = tr("Графика")
+	language_button.text = tr("Язык")
 	exit_button.text = tr("В меню")
-	language_button.text = _get_language_button_text()
 
 
+# Обновляет интерфейс после смены языка.
 func _on_locale_changed(_locale: String) -> void:
 	_refresh_static_text()
 
-	# Rebuild dynamic settings so their labels and values use the new locale.
-	if showing_graphics:
-		_show_graphic_settings()
-	else:
-		_show_screen_settings()
+	match current_tab:
+		"screen":
+			_show_screen_settings()
+		"graphic":
+			_show_graphic_settings()
+		"language":
+			_show_language_settings()
 
 
+# Показывает настройки экрана.
 func _show_screen_settings() -> void:
-	showing_graphics = false
+	current_tab = "screen"
 	screen_settings.show_settings()
 
 
+# Показывает настройки графики.
 func _show_graphic_settings() -> void:
-	showing_graphics = true
+	current_tab = "graphic"
 	graphic_settings.show_settings()
 
 
+# Показывает настройки языка.
+func _show_language_settings() -> void:
+	current_tab = "language"
+	language_settings.show_settings()
+
+
+# Возвращает игрока в главное меню.
 func _show_exit_settings() -> void:
 	get_tree().change_scene_to_file("res://UI/main menu/main menu.tscn")

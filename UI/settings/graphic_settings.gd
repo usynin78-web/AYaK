@@ -1,3 +1,4 @@
+
 extends Node
 
 var settings_list: VBoxContainer
@@ -20,18 +21,23 @@ func show_settings() -> void:
 	limit_button.pressed.connect(func(): _toggle_fps_limit(limit_button))
 
 
+# Безопасно очищает контейнер.
 func _clear_settings() -> void:
 	for child in settings_list.get_children():
-		child.free()
+		settings_list.remove_child(child)
+		child.queue_free()
 
 
 func _add_setting(label_text: String, button_text: String) -> Button:
 	var label := Label.new()
 	label.text = label_text
+
 	var button := Button.new()
 	button.text = button_text
+
 	settings_list.add_child(label)
 	settings_list.add_child(button)
+
 	return button
 
 
@@ -46,6 +52,7 @@ func _get_fps_visibility_name() -> String:
 
 func _toggle_fps_limit(button: Button) -> void:
 	current_fps_index += 1
+
 	if current_fps_index >= fps_limits.size():
 		current_fps_index = 0
 

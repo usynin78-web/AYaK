@@ -1,7 +1,12 @@
+
 extends RefCounted
 
 var settings_list: VBoxContainer
-var resolutions: Array[Vector2i] = [Vector2i(1920, 1080), Vector2i(1600, 900), Vector2i(1280, 720)]
+var resolutions: Array[Vector2i] = [
+	Vector2i(1920, 1080),
+	Vector2i(1600, 900),
+	Vector2i(1280, 720)
+]
 var current_resolution_index: int = 0
 
 
@@ -23,18 +28,23 @@ func show_settings() -> void:
 		vsync_button.pressed.connect(func(): _toggle_vsync(vsync_button))
 
 
+# Безопасно очищает контейнер.
 func _clear_settings() -> void:
 	for child in settings_list.get_children():
-		child.free()
+		settings_list.remove_child(child)
+		child.queue_free()
 
 
 func _add_setting(label_text: String, button_text: String) -> Button:
 	var label := Label.new()
 	label.text = label_text
+
 	var button := Button.new()
 	button.text = button_text
+
 	settings_list.add_child(label)
 	settings_list.add_child(button)
+
 	return button
 
 
@@ -51,10 +61,12 @@ func _get_resolution_name() -> String:
 
 func _toggle_vsync(button: Button) -> void:
 	var current_mode := DisplayServer.window_get_vsync_mode()
+
 	if current_mode == DisplayServer.VSYNC_DISABLED:
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
 	else:
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
+
 	button.text = _get_vsync_name()
 
 
@@ -72,6 +84,7 @@ func _toggle_window_mode(button: Button) -> void:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 		_:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+
 	button.text = _get_window_mode_name()
 
 
