@@ -37,3 +37,11 @@ SaveLabel не назначен!,SaveLabel не назначен!,SaveLabel is n
 Игрок не найден!,Игрок не найден!,Player not found!
 HealthComponent не найден!,HealthComponent не найден!,HealthComponent not found!
 SceneTree не найден,SceneTree не найден,SceneTree not found
+Игрок не найден в группе player.,Игрок не найден в группе player.,Player not found in the player group.
+DayTransition не назначен!,DayTransition не назначен!,DayTransition is not assigned!
+VisionArea не назначена!,VisionArea не назначена!,VisionArea is not assigned!
+VisionRayCast не назначен!,VisionRayCast не назначен!,VisionRayCast is not assigned!
+Не удалось сохранить исходные позиции мира!,Не удалось сохранить исходные позиции мира!,Failed to save the world's initial positions!
+Не зарегистрирована исходная позиция Кира!,Не зарегистрирована исходная позиция Кира!,Kir's initial position has not been registered!
+Не удалось сохранить чекпоинт на диск!,Не удалось сохранить чекпоинт на диск!,Failed to save the checkpoint to disk!
+Не удалось удалить файл сохранения!,Не удалось удалить файл сохранения!,Failed to delete the save file!
