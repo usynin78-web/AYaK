@@ -1,4 +1,3 @@
-
 extends Label
 
 @onready var player = $"../../c3"
@@ -20,19 +19,11 @@ func _process(_delta: float) -> void:
 	if is_instance_valid(day_manager):
 		current_day = day_manager.current_day
 
-	text = """
-FPS: %d
-X: %d
-Y: %d
-Локация: %s
-День: %02d
-""" % [
+	text = tr("FPS: %d\nX: %d\nY: %d\nЛокация: %s\nДень: %02d") % [
 		Engine.get_frames_per_second(),
 		int(player.global_position.x),
 		int(player.global_position.y),
-		tr("Локация"),
 		room.location_id,
-		tr("ДЕНЬ"),
 		current_day
 	]
 
