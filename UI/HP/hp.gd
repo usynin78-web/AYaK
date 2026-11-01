@@ -12,14 +12,14 @@ func _ready() -> void:
 	var player = get_tree().get_first_node_in_group("player")
 	
 	if player == null:
-		push_error("Игрок не найден.")
+		push_error(tr("Игрок не найден."))
 		return
 	
 	# Ищем HealthComponent внутри игрока
 	health_component = player.get_node_or_null("HealthComponent")
 	
 	if health_component == null:
-		push_error("HealthComponent не найден.")
+		push_error(tr("HealthComponent не найден."))
 		return
 	
 	# Подключаем сигналы
