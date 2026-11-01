@@ -121,7 +121,7 @@ fps_toggle={
 [internationalization]
 
 locale/translation_add_builtin_strings_to_pot=true
-locale/translations=PackedStringArray("res://UI/localisation/translations.csv")
+locale/translations=PackedStringArray("res://UI/localisation/translations.ru.translation", "res://UI/localisation/translations.en.translation")
 
 [layer_names]
 
