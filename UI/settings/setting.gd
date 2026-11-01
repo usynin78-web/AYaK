@@ -39,8 +39,8 @@ func _ready() -> void:
 
 func _get_language_button_text() -> String:
 	if LocalisationManager.current_locale == "ru":
-		return "Language: Русский"
-	return "Language: English"
+		return tr("Язык: Русский")
+	return tr("Язык: Английский")
 
 
 func _toggle_language() -> void:
