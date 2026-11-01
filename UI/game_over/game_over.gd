@@ -20,7 +20,7 @@ func _on_start_pressed():
    CheckpointManager.clear_save()
   tree.change_scene_to_file("res://loc/roomtest/roomtest.tscn")
  else:
-  push_error("SceneTree не найден")
+  push_error(tr("SceneTree не найден"))
 
 func _on_menu_pressed():
  var tree = get_tree()
@@ -30,4 +30,4 @@ func _on_menu_pressed():
    CheckpointManager.clear_save()
   tree.change_scene_to_file("res://UI/main menu/main menu.tscn")
  else:
-  push_error("SceneTree не найден")
+  push_error(tr("SceneTree не найден"))
