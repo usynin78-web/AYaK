@@ -76,14 +76,14 @@ grow_vertical = 2
 
 [node name="start" type="Button" parent="VBoxContainer" unique_id=125795489]
 layout_mode = 2
-accessibility_name = "start"
+accessibility_name = "Начать заново"
 theme = SubResource("Theme_wjdna")
 theme_type_variation = &"FlatButton"
 text = "Начать заново"
 
 [node name="menu" type="Button" parent="VBoxContainer" unique_id=1690512431]
 layout_mode = 2
-accessibility_name = "start"
+accessibility_name = "Начать заново"
 theme = SubResource("Theme_wjdna")
 theme_type_variation = &"FlatButton"
 text = "В главное меню"
