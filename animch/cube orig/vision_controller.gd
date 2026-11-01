@@ -15,11 +15,11 @@ var last_wall_state: bool = false
 
 func _ready() -> void:
 	if vision_area == null:
-		push_error("VisionArea не назначена!")
+		push_error(tr("VisionArea не назначена!"))
 		return
 
 	if vision_ray == null:
-		push_error("VisionRayCast не назначен!")
+		push_error(tr("VisionRayCast не назначен!"))
 		return
 
 	vision_area.body_entered.connect(_on_body_entered)
