@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://b67uhqe3tkoyo"]
+
+[ext_resource type="Script" uid="uid://wnoej3uaexfn" path="res://UI/invetory/inventory_slot.gd" id="1_47hwm"]
+
+[node name="InventorySlot" type="Button" unique_id=1495975572]
+offset_right = 1219.0
+offset_bottom = 821.0
+script = ExtResource("1_47hwm")

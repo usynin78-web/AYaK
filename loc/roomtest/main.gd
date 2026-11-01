@@ -18,9 +18,6 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
 		start_exit_to_menu()
 
-	if Input.is_action_pressed("restart_game"):
-		get_tree().reload_current_scene()
-
 
 func start_exit_to_menu() -> void:
 	# Останавливаем управление игроком.

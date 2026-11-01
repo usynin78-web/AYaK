@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://kdoouu8tthyi"]
+
+[ext_resource type="Script" uid="uid://c22nhrox6ttru" path="res://UI/invetory/item/item_data.gd" id="1_fx8pn"]
+
+[resource]
+script = ExtResource("1_fx8pn")
+item_id = "test"
+max_stack = 10
+metadata/_custom_type_script = "uid://c22nhrox6ttru"

@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://crhoo7lvuoxwe" path="res://UI/mtv/mtv.tscn" id="6_fa5je"]
 [ext_resource type="Script" uid="uid://dsjmm7jq1qu3f" path="res://UI/mobile_controls.gd" id="6_mobile"]
 [ext_resource type="PackedScene" uid="uid://ceksw8vdqxxn" path="res://UI/day/day_transition.tscn" id="7_y1ync"]
+[ext_resource type="PackedScene" uid="uid://ckbi5i231mv4f" path="res://UI/invetory/inventory.tscn" id="8_owyje"]
 [ext_resource type="Script" uid="uid://3fnb51h6xqhd" path="res://UI/day/DayManager.gd" id="10_owyje"]
 
 [sub_resource type="Animation" id="Animation_sjkhc"]
@@ -50,6 +51,10 @@ offset_bottom = -9.0
 [node name="mtv" parent="UI" unique_id=1657242017 instance=ExtResource("6_fa5je")]
 
 [node name="DayTransition" parent="UI" unique_id=88792890 instance=ExtResource("7_y1ync")]
+
+[node name="Inventory" parent="UI" unique_id=1625857414 instance=ExtResource("8_owyje")]
+inventory_size = null
+columns = null
 
 [node name="MobileControls" type="CanvasLayer" parent="." unique_id=389121593]
 
