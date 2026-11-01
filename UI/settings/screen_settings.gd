@@ -25,7 +25,7 @@ func show_settings() -> void:
 
 func _clear_settings() -> void:
 	for child in settings_list.get_children():
-		child.queue_free()
+		child.free()
 
 
 func _add_setting(label_text: String, button_text: String) -> Button:
