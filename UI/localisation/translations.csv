@@ -1,37 +1,36 @@
-key,ru
-NEW_GAME,Начать
-CONTINUE,Продолжить
-SETTINGS,Настройки
-EXIT,Выйти
-PRESS_ANY_KEY,Press any key to start
-SCREEN,Экран
-GRAPHICS,Графика
-BACK_TO_MENU,В меню
-RESOLUTION,Разрешение
-WINDOW_MODE,Режим окна
-VSYNC,V-Sync (вертикальная синхронизация)
-WINDOWED,Оконный
-FULLSCREEN,Полноэкранный
-BORDERLESS,Без рамки
-UNKNOWN,Неизвестно
-FPS_DISPLAY,Отображение FPS
-FPS_LIMIT,Ограничение FPS
-ON,Вкл.
-OFF,Выкл.
-UNLIMITED,Без ограничений
-SAVE_SUCCESS,Сохранение успешно выполнено
-YOU_DIED,ВЫ ПОГИБЛИ
-RESTART,Начать заново
-MAIN_MENU,В главное меню
-GAME_OVER_TITLE,Хорошее начало
-GAME_OVER_SUBTITLE,Жаль недолгое
-DAY_PREFIX,ДЕНЬ
-LOCATION,Локация
-PLAYER_NOT_FOUND,Игрок не найден.
-HP_COMPONENT_NOT_FOUND,HealthComponent не найден.
-MOTIVATION_COMPONENT_NOT_FOUND,MotivationComponent не найден у игрока.
-CHECKPOINT_NOT_ASSIGNED,E_icon не назначен!
-SAVE_LABEL_NOT_ASSIGNED,SaveLabel не назначен!
-CHECKPOINT_PLAYER_NOT_FOUND,Игрок не найден!
-CHECKPOINT_HP_NOT_FOUND,HealthComponent не найден!
-SCENE_TREE_NOT_FOUND,SceneTree не найден
+keys,ru,en
+Начать,Начать,New Game
+Продолжить,Продолжить,Continue
+Настройки,Настройки,Settings
+Выйти,Выйти,Quit
+Экран,Экран,Screen
+Графика,Графика,Graphics
+В меню,В меню,Back to Menu
+Разрешение,Разрешение,Resolution
+Режим окна,Режим окна,Window Mode
+V-Sync (вертикальная синхронизация),V-Sync (вертикальная синхронизация),V-Sync (Vertical Sync)
+Оконный,Оконный,Windowed
+Полноэкранный,Полноэкранный,Fullscreen
+Без рамки,Без рамки,Borderless
+Неизвестно,Неизвестно,Unknown
+Отображение FPS,Отображение FPS,FPS Display
+Ограничение FPS,Ограничение FPS,FPS Limit
+Вкл.,Вкл.,On
+Выкл.,Выкл.,Off
+Без ограничений,Без ограничений,Unlimited
+Сохранение успешно выполнено,Сохранение успешно выполнено,Game saved successfully
+ВЫ ПОГИБЛИ,ВЫ ПОГИБЛИ,YOU DIED
+Начать заново,Начать заново,Restart
+В главное меню,В главное меню,Main Menu
+Хорошее начало,Хорошее начало,What a Good Start
+Жаль недолгое,Жаль недолгое,Too Bad It Was Brief
+ДЕНЬ,ДЕНЬ,DAY
+Локация,Локация,Location
+Игрок не найден.,Игрок не найден.,Player not found.
+HealthComponent не найден.,HealthComponent не найден.,HealthComponent not found.
+MotivationComponent не найден у игрока.,MotivationComponent не найден у игрока.,Player MotivationComponent not found.
+E_icon не назначен!,E_icon не назначен!,E_icon is not assigned!
+SaveLabel не назначен!,SaveLabel не назначен!,SaveLabel is not assigned!
+Игрок не найден!,Игрок не найден!,Player not found!
+HealthComponent не найден!,HealthComponent не найден!,HealthComponent not found!
+SceneTree не найден,SceneTree не найден,SceneTree not found
