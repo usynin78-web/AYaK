@@ -106,7 +106,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-accessibility_name = "main menu"
+accessibility_name = "Главное меню"
 script = ExtResource("1_x1d3d")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1281925936]
@@ -180,32 +180,32 @@ offset_bottom = 149.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 0
-accessibility_name = "main menu"
+accessibility_name = "Главное меню"
 
 [node name="start" type="Button" parent="VBoxContainer" unique_id=112315503]
 layout_mode = 2
-accessibility_name = "start"
+accessibility_name = "Начать"
 theme = ExtResource("4_dmwvm")
 theme_type_variation = &"FlatButton"
 text = "Начать"
 
 [node name="continue" type="Button" parent="VBoxContainer" unique_id=1958528430]
 layout_mode = 2
-accessibility_name = "continue"
+accessibility_name = "Продолжить"
 theme = ExtResource("4_dmwvm")
 theme_type_variation = &"FlatButton"
 text = "Продолжить"
 
 [node name="setting" type="Button" parent="VBoxContainer" unique_id=1260301710]
 layout_mode = 2
-accessibility_name = "start"
+accessibility_name = "Начать"
 theme = ExtResource("4_dmwvm")
 theme_type_variation = &"FlatButton"
 text = "Настройки"
 
 [node name="exit" type="Button" parent="VBoxContainer" unique_id=1649470119]
 layout_mode = 2
-accessibility_name = "exit"
+accessibility_name = "Выйти"
 theme = ExtResource("4_dmwvm")
 theme_type_variation = &"FlatButton"
 text = "Выйти"
