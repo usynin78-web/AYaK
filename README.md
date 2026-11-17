@@ -1,108 +1,98 @@
 # AYaK
 
-**AYaK** is an early-stage 2D game project made with **Godot**, primarily written in **GDScript** project support present in the repository.
+**AYaK (Are You a Killer?)** is a 2D game in active development, built with **Godot 4.7** and primarily written in **GDScript**.
 
-The project is currently in active development. The current public build is an unfinished development version, so things will change, break, and occasionally behave like they have personal grievances. That is currently part of the experience.
+The project is an unfinished development build. Features, controls, and technical requirements may change between releases.
 
-## Current status
+## Project status
 
 <!-- AYaK:VERSION:START -->
 The latest published release is **v0.1.2.dev**.
 <!-- AYaK:VERSION:END -->
 
-The `v0.1.1-dev` release includes the basic foundations of the game:
+AYaK is currently in an early prototype stage. The repository's main branch contains ongoing development and may be newer than the latest published release.
 
-* basic player movement;
-* an NPC prototype;
-* a basic attack;
-* health and damage functionality.
+### Current prototype
 
-Development has continued beyond that release. Recent changes on the main branch include:
+The project currently includes the following foundations:
 
-* screen and graphics settings;
-* improvements and fixes to death behaviour;
-* continued development of NPC vision;
-* support for multiple NPCs;
-* patrol behaviour;
-* wall detection for NPC vision.
+- 2D player movement;
+- an NPC prototype, with ongoing work on NPC vision and behaviour;
+- a basic attack system;
+- health and damage functionality;
+- a motivation bar and notifications related to health changes;
+- main-menu settings, including screen and graphics options.
 
-The repository contains the current development state of the project, so the `main` branch may be newer than the latest tagged release.
+These are development features, not a statement that the game is complete or feature-frozen.
 
-## Development
-
-The project is developed with **Godot** and primarily uses **GDScript**.
-
-The project structure, gameplay systems, and implementation are still changing as development continues.
-
-## Releases
+## Latest release
 
 <!-- AYaK:RELEASE:START -->
-**v0.1.2.dev** · 2026-10-31 · Релиз
+**v0.1.2.dev** · 2026-10-31 · Development release
 
-[Открыть страницу релиза](https://github.com/usynin78-web/AYaK/releases/tag/v0.1.2.dev)
+[Open release page](https://github.com/usynin78-web/AYaK/releases/tag/v0.1.2.dev)
 
-### Изменения
+### Changes
 
 **Added:**
 
-> 1. Mobile version for Android devices (minimal android version - 7.0)
-> 2. New bar: *motivation* (white bar below HP)
-> 3. Pop-up notifications following changes to HP
-> 4. Improved settings in the main menu
+- Android build support (minimum Android version: 7.0);
+- a motivation bar below the health bar;
+- pop-up notifications when health changes;
+- improved main-menu settings.
 
-### Файлы
+### Downloads
 
-- [AYaK.apk](https://github.com/usynin78-web/AYaK/releases/download/v0.1.2.dev/AYaK.apk)
-- [ayak_32_linux.0.1.2.dev.tar.gz](https://github.com/usynin78-web/AYaK/releases/download/v0.1.2.dev/ayak_32_linux.0.1.2.dev.tar.gz)
-- [ayak_32_win.0.1.2.dev.zip](https://github.com/usynin78-web/AYaK/releases/download/v0.1.2.dev/ayak_32_win.0.1.2.dev.zip)
-- [ayak_64_linux.0.1.2.dev.tar.gz](https://github.com/usynin78-web/AYaK/releases/download/v0.1.2.dev/ayak_64_linux.0.1.2.dev.tar.gz)
-- [ayak_64_win.0.1.2.dev.zip](https://github.com/usynin78-web/AYaK/releases/download/v0.1.2.dev/ayak_64_win.0.1.2.dev.zip)
-- [ayak_arm32_linux.0.1.2.dev.tar.gz](https://github.com/usynin78-web/AYaK/releases/download/v0.1.2.dev/ayak_arm32_linux.0.1.2.dev.tar.gz)
-- [ayak_arm64_linux.0.1.2.dev.tar.gz](https://github.com/usynin78-web/AYaK/releases/download/v0.1.2.dev/ayak_arm64_linux.0.1.2.dev.tar.gz)
-- [ayak_arm_win.0.1.2.dev.zip](https://github.com/usynin78-web/AYaK/releases/download/v0.1.2.dev/ayak_arm_win.0.1.2.dev.zip)
+- [Android (APK)](https://github.com/usynin78-web/AYaK/releases/download/v0.1.2.dev/AYaK.apk)
+- [Windows x86](https://github.com/usynin78-web/AYaK/releases/download/v0.1.2.dev/ayak_32_win.0.1.2.dev.zip)
+- [Windows x86_64](https://github.com/usynin78-web/AYaK/releases/download/v0.1.2.dev/ayak_64_win.0.1.2.dev.zip)
+- [Windows ARM](https://github.com/usynin78-web/AYaK/releases/download/v0.1.2.dev/ayak_arm_win.0.1.2.dev.zip)
+- [Linux x86](https://github.com/usynin78-web/AYaK/releases/download/v0.1.2.dev/ayak_32_linux.0.1.2.dev.tar.gz)
+- [Linux x86_64](https://github.com/usynin78-web/AYaK/releases/download/v0.1.2.dev/ayak_64_linux.0.1.2.dev.tar.gz)
+- [Linux ARM32](https://github.com/usynin78-web/AYaK/releases/download/v0.1.2.dev/ayak_arm32_linux.0.1.2.dev.tar.gz)
+- [Linux ARM64](https://github.com/usynin78-web/AYaK/releases/download/v0.1.2.dev/ayak_arm64_linux.0.1.2.dev.tar.gz)
 <!-- AYaK:RELEASE:END -->
 
-[View releases](https://github.com/usynin78-web/ayak/releases)
+[Browse all releases](https://github.com/usynin78-web/AYaK/releases)
+
+## Development
+
+- **Engine:** Godot 4.7
+- **Language:** GDScript
+- **Project type:** 2D
+- **Rendering mode:** Compatibility (GL Compatibility)
+
+To open the project, install Godot 4.7 or a compatible newer version, clone or download this repository, and import the project by opening its project.godot file in Godot.
+
+The project is under active development, so the current source may contain unfinished systems or temporary issues.
 
 ## Source code and license
 
-The source code is publicly available for viewing, study, experimentation, modification, and non-commercial use under the **Temporary Non-Commercial Source Code License, Version 1.0**.
+The source code is available for viewing, study, experimentation, modification, and non-commercial use under the **Temporary Non-Commercial Source Code License, Version 1.0**.
 
-The current source-code license is intentionally temporary and may be revised for future versions of the project as the developer's own contribution to the source code increases.
+The license is temporary and may be revised for future versions of the project. Read [LICENSE.md](LICENSE.md) for the complete terms before using or redistributing the source code.
 
-See [`LICENSE.md`](LICENSE.md) for the complete terms.
-
-### AI contribution
+### AI-assisted development
 
 At the time of the current license, **100% of the project's source code has been generated with the assistance of artificial intelligence**.
 
-The project is directed and developed by the project developer, who determines its functionality and architecture, integrates the generated code, reviews the resulting project, and decides how the code is used within the project.
+The project is directed by its developer, who determines its functionality and architecture, integrates generated code, reviews the resulting project, and decides how the code is used.
 
-This information is provided for transparency regarding the development process. The legal status of individual portions of AI-generated code may depend on applicable law and the specific circumstances of their creation and modification.
+This note is provided for transparency about the development process. The legal status of individual portions of AI-generated code may depend on applicable law and the specific circumstances of their creation and modification.
 
 ## Artwork and other creative assets
 
-The game's artwork, character designs, story, dialogue, music, sound effects, logos, and other creative assets are **not covered by the source-code license** unless a separate license explicitly states otherwise.
+The game's artwork, character designs, story, dialogue, music, sound effects, logos, and other creative assets are **not covered by the source-code license**, unless a separate license explicitly states otherwise.
 
-These materials are separately protected and are not automatically available for reuse merely because the source code is public.
+They are not automatically available for reuse merely because the source code is public.
 
 ## Contributing
 
-The repository is primarily the development space of the project.
+This repository is primarily the development space for AYaK. Public forks and non-commercial modifications are permitted under the current source-code license.
 
-Public forks and non-commercial modifications are permitted under the current source-code license.
-
-Creators of public forks or substantial derivative projects are asked to provide a link to the original project and, where possible, notify the author about the derivative project.
-
-Notification is appreciated but is not required by the current license.
-
-## Development history
-
-Development is tracked through the repository's Git history.
-
-The project is continuously evolving, and tagged releases represent specific snapshots of the project rather than permanent versions of the codebase.
+If you publish a fork or a substantial derivative project, please provide a link to the original repository. Notifying the author is appreciated, but is not required by the current license.
 
 ## Author
 
-**uizynin**
+**uizynin**  
 GitHub: [@usynin78-web](https://github.com/usynin78-web)
