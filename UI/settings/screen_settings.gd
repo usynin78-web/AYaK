@@ -1,4 +1,3 @@
-
 extends RefCounted
 
 var settings_list: VBoxContainer
@@ -12,6 +11,15 @@ var current_resolution_index: int = 0
 
 func _init(list: VBoxContainer) -> void:
 	settings_list = list
+	# Синхронизируем индекс списка с разрешением, загруженным из CFG.
+	var saved_resolution: Vector2i = SettingsManager.resolution
+	var saved_index := resolutions.find(saved_resolution)
+	if saved_index >= 0:
+		current_resolution_index = saved_index
+	else:
+		# Если сохранено нестандартное разрешение, добавляем его в список.
+		resolutions.append(saved_resolution)
+		current_resolution_index = resolutions.size() - 1
 
 
 func show_settings() -> void:
@@ -50,7 +58,7 @@ func _add_setting(label_text: String, button_text: String) -> Button:
 
 func _toggle_resolution(button: Button) -> void:
 	current_resolution_index = (current_resolution_index + 1) % resolutions.size()
-	DisplayServer.window_set_size(resolutions[current_resolution_index])
+	SettingsManager.set_resolution(resolutions[current_resolution_index])
 	button.text = _get_resolution_name()
 
 
@@ -60,36 +68,36 @@ func _get_resolution_name() -> String:
 
 
 func _toggle_vsync(button: Button) -> void:
-	var current_mode := DisplayServer.window_get_vsync_mode()
-
-	if current_mode == DisplayServer.VSYNC_DISABLED:
-		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
-	else:
-		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
-
+	var current_mode: int = SettingsManager.vsync_mode
+	var next_mode := (
+		DisplayServer.VSYNC_DISABLED
+		if current_mode != DisplayServer.VSYNC_DISABLED
+		else DisplayServer.VSYNC_ENABLED
+	)
+	SettingsManager.set_vsync_mode(next_mode)
 	button.text = _get_vsync_name()
 
 
 func _get_vsync_name() -> String:
-	return tr("Выкл.") if DisplayServer.window_get_vsync_mode() == DisplayServer.VSYNC_DISABLED else tr("Вкл.")
+	return tr("Выкл.") if SettingsManager.vsync_mode == DisplayServer.VSYNC_DISABLED else tr("Вкл.")
 
 
 func _toggle_window_mode(button: Button) -> void:
-	match DisplayServer.window_get_mode():
+	match SettingsManager.window_mode:
 		DisplayServer.WINDOW_MODE_WINDOWED:
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+			SettingsManager.set_window_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 		DisplayServer.WINDOW_MODE_FULLSCREEN:
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
+			SettingsManager.set_window_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
 		DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN:
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+			SettingsManager.set_window_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 		_:
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+			SettingsManager.set_window_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 
 	button.text = _get_window_mode_name()
 
 
 func _get_window_mode_name() -> String:
-	match DisplayServer.window_get_mode():
+	match SettingsManager.window_mode:
 		DisplayServer.WINDOW_MODE_WINDOWED:
 			return tr("Оконный")
 		DisplayServer.WINDOW_MODE_FULLSCREEN:
