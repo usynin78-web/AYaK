@@ -28,7 +28,7 @@ These are development features, not a statement that the game is complete or fea
 ## Latest release
 
 <!-- AYaK:RELEASE:START -->
-**v0.1.2.dev** · 2026-10-31 · Development release
+**v0.1.2.dev** · 2026-10-31 · Релиз
 
 [Open release page](https://github.com/usynin78-web/AYaK/releases/tag/v0.1.2.dev)
 
@@ -36,21 +36,21 @@ These are development features, not a statement that the game is complete or fea
 
 **Added:**
 
-- Android build support (minimum Android version: 7.0);
-- a motivation bar below the health bar;
-- pop-up notifications when health changes;
-- improved main-menu settings.
+> 1. Mobile version for Android devices (minimal android version - 7.0)
+> 2. New bar: *motivation* (white bar below HP)
+> 3. Pop-up notifications following changes to HP
+> 4. Improved settings in the main menu
 
 ### Downloads
 
-- [Android (APK)](https://github.com/usynin78-web/AYaK/releases/download/v0.1.2.dev/AYaK.apk)
-- [Windows x86](https://github.com/usynin78-web/AYaK/releases/download/v0.1.2.dev/ayak_32_win.0.1.2.dev.zip)
-- [Windows x86_64](https://github.com/usynin78-web/AYaK/releases/download/v0.1.2.dev/ayak_64_win.0.1.2.dev.zip)
-- [Windows ARM](https://github.com/usynin78-web/AYaK/releases/download/v0.1.2.dev/ayak_arm_win.0.1.2.dev.zip)
-- [Linux x86](https://github.com/usynin78-web/AYaK/releases/download/v0.1.2.dev/ayak_32_linux.0.1.2.dev.tar.gz)
-- [Linux x86_64](https://github.com/usynin78-web/AYaK/releases/download/v0.1.2.dev/ayak_64_linux.0.1.2.dev.tar.gz)
-- [Linux ARM32](https://github.com/usynin78-web/AYaK/releases/download/v0.1.2.dev/ayak_arm32_linux.0.1.2.dev.tar.gz)
-- [Linux ARM64](https://github.com/usynin78-web/AYaK/releases/download/v0.1.2.dev/ayak_arm64_linux.0.1.2.dev.tar.gz)
+- [AYaK.apk](https://github.com/usynin78-web/AYaK/releases/download/v0.1.2.dev/AYaK.apk) (125.7 MB)
+- [ayak_32_linux.0.1.2.dev.tar.gz](https://github.com/usynin78-web/AYaK/releases/download/v0.1.2.dev/ayak_32_linux.0.1.2.dev.tar.gz) (40.7 MB)
+- [ayak_32_win.0.1.2.dev.zip](https://github.com/usynin78-web/AYaK/releases/download/v0.1.2.dev/ayak_32_win.0.1.2.dev.zip) (48.4 MB)
+- [ayak_64_linux.0.1.2.dev.tar.gz](https://github.com/usynin78-web/AYaK/releases/download/v0.1.2.dev/ayak_64_linux.0.1.2.dev.tar.gz) (40.4 MB)
+- [ayak_64_win.0.1.2.dev.zip](https://github.com/usynin78-web/AYaK/releases/download/v0.1.2.dev/ayak_64_win.0.1.2.dev.zip) (47.4 MB)
+- [ayak_arm32_linux.0.1.2.dev.tar.gz](https://github.com/usynin78-web/AYaK/releases/download/v0.1.2.dev/ayak_arm32_linux.0.1.2.dev.tar.gz) (38.5 MB)
+- [ayak_arm64_linux.0.1.2.dev.tar.gz](https://github.com/usynin78-web/AYaK/releases/download/v0.1.2.dev/ayak_arm64_linux.0.1.2.dev.tar.gz) (26.7 MB)
+- [ayak_arm_win.0.1.2.dev.zip](https://github.com/usynin78-web/AYaK/releases/download/v0.1.2.dev/ayak_arm_win.0.1.2.dev.zip) (44.0 MB)
 <!-- AYaK:RELEASE:END -->
 
 [Browse all releases](https://github.com/usynin78-web/AYaK/releases)
