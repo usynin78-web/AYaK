@@ -53,7 +53,7 @@ jobs:
           seen = set()
 
           for line in log:
-              if "SCRIPT ERROR:" in line or re.search(r"(^|\\s)ERROR:", line):
+              if "SCRIPT ERROR:" in line or re.search(r"(^|\s)ERROR:", line):
                   clean = line.strip()
                   if clean and clean not in seen:
                       seen.add(clean)
