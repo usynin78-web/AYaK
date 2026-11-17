@@ -1,0 +1,148 @@
+name: Update README on Release
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Тег релиза. Оставь пустым, чтобы взять последний опубликованный релиз."
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+# Не запускаем два обновления README одновременно.
+concurrency:
+  group: update-readme
+  cancel-in-progress: false
+
+jobs:
+  update-readme:
+    name: Update release information in README
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Update README from GitHub Release
+        uses: actions/github-script@v7
+        env:
+          RELEASE_TAG: ${{ inputs.tag }}
+        with:
+          script: |
+            const fs = require('fs');
+
+            // При публикации релиза данные уже находятся в событии.
+            // При ручном запуске получаем релиз по тегу или берём последний.
+            let release = context.payload.release;
+
+            if (!release) {
+              const tag = process.env.RELEASE_TAG?.trim();
+
+              if (tag) {
+                const response = await github.rest.repos.getReleaseByTag({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  tag
+                });
+                release = response.data;
+              } else {
+                const response = await github.rest.repos.listReleases({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  per_page: 1
+                });
+                release = response.data.find(item => !item.draft);
+              }
+            }
+
+            if (!release || release.draft) {
+              core.setFailed('Не удалось найти опубликованный релиз.');
+              return;
+            }
+
+            const tag = release.tag_name;
+            const date = new Date(release.published_at || release.created_at)
+              .toISOString()
+              .slice(0, 10);
+            const releaseType = release.prerelease
+              ? 'Предварительный релиз'
+              : 'Релиз';
+
+            const notes = release.body?.trim() || '_Описание релиза не добавлено._';
+
+            const assets = (release.assets || []).map(asset => {
+              const sizeMb = (asset.size / 1024 / 1024).toFixed(1);
+              return `- [${asset.name}](${asset.browser_download_url}) (${sizeMb} MB)`;
+            });
+
+            const downloads = assets.length
+              ? assets.join('\n')
+              : '_К релизу пока не прикреплены файлы._';
+
+            // Эти блоки README обновляются автоматически.
+            // Остальной текст файла скрипт не изменяет.
+            const versionBlock = [
+              '<!-- AYaK:VERSION:START -->',
+              `The latest published release is **${tag}**.`,
+              '<!-- AYaK:VERSION:END -->'
+            ].join('\n');
+
+            const releaseBlock = [
+              '<!-- AYaK:RELEASE:START -->',
+              `**${tag}** · ${date} · ${releaseType}`,
+              '',
+              `[Открыть страницу релиза](${release.html_url})`,
+              '',
+              '### Изменения',
+              '',
+              notes,
+              '',
+              '### Файлы',
+              '',
+              downloads,
+              '<!-- AYaK:RELEASE:END -->'
+            ].join('\n');
+
+            let readme = fs.readFileSync('README.md', 'utf8');
+
+            function replaceManagedBlock(source, name, replacement) {
+              const start = `<!-- AYaK:${name}:START -->`;
+              const end = `<!-- AYaK:${name}:END -->`;
+              const startIndex = source.indexOf(start);
+              const endIndex = source.indexOf(end);
+
+              if (startIndex === -1 || endIndex === -1 || endIndex < startIndex) {
+                throw new Error(`В README.md не найдены корректные маркеры блока ${name}.`);
+              }
+
+              return source.slice(0, startIndex) +
+                replacement +
+                source.slice(endIndex + end.length);
+            }
+
+            readme = replaceManagedBlock(readme, 'VERSION', versionBlock);
+            readme = replaceManagedBlock(readme, 'RELEASE', releaseBlock);
+
+            fs.writeFileSync('README.md', readme, 'utf8');
+            core.info(`README подготовлен для релиза ${tag} от ${date}.`);
+
+      - name: Commit README changes
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          if git diff --quiet -- README.md; then
+            echo "README уже содержит актуальную информацию."
+            exit 0
+          fi
+
+          git add README.md
+          git commit -m "docs: update README for release"
+          git push origin HEAD:main
