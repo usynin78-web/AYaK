@@ -12,6 +12,14 @@ The latest published release is **v0.1.2.dev**.
 
 AYaK is currently in an early prototype stage. The repository's main branch contains ongoing development and may be newer than the latest published release.
 
+## Next release notes
+
+Write the changes for the next version below. When you push a version tag, the build workflow will use this text as the GitHub Release description.
+
+<!-- AYaK:NEXT-RELEASE:START -->
+_Add the next release notes here before creating its version tag._
+<!-- AYaK:NEXT-RELEASE:END -->
+
 ### Current prototype
 
 The project currently includes the following foundations:
