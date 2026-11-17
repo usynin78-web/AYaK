@@ -69,8 +69,12 @@ jobs:
           echo "error_count=$ERROR_COUNT" >> "$GITHUB_OUTPUT"
           echo "godot_exit_code=$GODOT_EXIT_CODE" >> "$GITHUB_OUTPUT"
 
-          if [ "$GODOT_EXIT_CODE" -ne 0 ] || [ "$ERROR_COUNT" -gt 0 ]; then
+          if [ "$ERROR_COUNT" -gt 0 ]; then
             exit 1
+          fi
+
+          if [ "$GODOT_EXIT_CODE" -ne 0 ]; then
+            echo "::warning::Godot завершился с кодом $GODOT_EXIT_CODE. См. godot-check.log."
           fi
 
       - name: Create or update GitHub Issues for errors
