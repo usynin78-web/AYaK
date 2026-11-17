@@ -28,7 +28,7 @@ These are development features, not a statement that the game is complete or fea
 ## Latest release
 
 <!-- AYaK:RELEASE:START -->
-**v0.1.2.dev** · 2026-10-31 · Релиз
+**v0.1.2.dev** · 2026-10-31 · Release
 
 [Open release page](https://github.com/usynin78-web/AYaK/releases/tag/v0.1.2.dev)
 
