@@ -77,8 +77,8 @@ jobs:
               .toISOString()
               .slice(0, 10);
             const releaseType = release.prerelease
-              ? 'Предварительный релиз'
-              : 'Релиз';
+              ? 'Prerelease'
+              : 'Release';
 
             const notes = release.body?.trim() || '_No release notes provided._';
 
