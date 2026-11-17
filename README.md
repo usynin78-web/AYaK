@@ -23,7 +23,7 @@ The project currently includes the following foundations:
 - a motivation bar and notifications related to health changes;
 - main-menu settings, including screen and graphics options.
 
-These are development features, not a statement that the game is complete or feature-frozen.
+These are development features; the game is not complete or feature-frozen.
 
 ## Latest release
 
