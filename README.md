@@ -6,7 +6,9 @@ The project is currently in active development. The current public build is an u
 
 ## Current status
 
-The latest public release is **v0.1.2-dev**. It is a prerelease development build and is still very early and unfinished.
+<!-- AYaK:VERSION:START -->
+The latest published release is **v0.1.2.dev**.
+<!-- AYaK:VERSION:END -->
 
 The `v0.1.1-dev` release includes the basic foundations of the game:
 
@@ -34,12 +36,31 @@ The project structure, gameplay systems, and implementation are still changing a
 
 ## Releases
 
-Current public release:
+<!-- AYaK:RELEASE:START -->
+**v0.1.2.dev** · 2026-10-31 · Релиз
 
-**v0.1.1-dev**
-Early development build for Windows and Linux.
+[Открыть страницу релиза](https://github.com/usynin78-web/AYaK/releases/tag/v0.1.2.dev)
 
-This release is a **prerelease** and should not be considered a finished version of the game.
+### Изменения
+
+**Added:**
+
+> 1. Mobile version for Android devices (minimal android version - 7.0)
+> 2. New bar: *motivation* (white bar below HP)
+> 3. Pop-up notifications following changes to HP
+> 4. Improved settings in the main menu
+
+### Файлы
+
+- [AYaK.apk](https://github.com/usynin78-web/AYaK/releases/download/v0.1.2.dev/AYaK.apk)
+- [ayak_32_linux.0.1.2.dev.tar.gz](https://github.com/usynin78-web/AYaK/releases/download/v0.1.2.dev/ayak_32_linux.0.1.2.dev.tar.gz)
+- [ayak_32_win.0.1.2.dev.zip](https://github.com/usynin78-web/AYaK/releases/download/v0.1.2.dev/ayak_32_win.0.1.2.dev.zip)
+- [ayak_64_linux.0.1.2.dev.tar.gz](https://github.com/usynin78-web/AYaK/releases/download/v0.1.2.dev/ayak_64_linux.0.1.2.dev.tar.gz)
+- [ayak_64_win.0.1.2.dev.zip](https://github.com/usynin78-web/AYaK/releases/download/v0.1.2.dev/ayak_64_win.0.1.2.dev.zip)
+- [ayak_arm32_linux.0.1.2.dev.tar.gz](https://github.com/usynin78-web/AYaK/releases/download/v0.1.2.dev/ayak_arm32_linux.0.1.2.dev.tar.gz)
+- [ayak_arm64_linux.0.1.2.dev.tar.gz](https://github.com/usynin78-web/AYaK/releases/download/v0.1.2.dev/ayak_arm64_linux.0.1.2.dev.tar.gz)
+- [ayak_arm_win.0.1.2.dev.zip](https://github.com/usynin78-web/AYaK/releases/download/v0.1.2.dev/ayak_arm_win.0.1.2.dev.zip)
+<!-- AYaK:RELEASE:END -->
 
 [View releases](https://github.com/usynin78-web/ayak/releases)
 
