@@ -5,6 +5,7 @@ extends Node2D
 @onready var player: Node = $c3
 @onready var player_health: Node = $c3/HealthComponent
 @onready var notification: Control = $UI/Notification
+@onready var game_over: Control = $UI/GameOver
 
 
 func _ready() -> void:
@@ -48,3 +49,4 @@ func _on_health_amount_changed(amount: int) -> void:
 # Получаем сигнал о смерти Кира.
 func _on_player_died() -> void:
 	notification.notify_death()
+	game_over.show()
