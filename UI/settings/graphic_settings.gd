@@ -1,4 +1,3 @@
-
 extends Node
 
 var settings_list: VBoxContainer
@@ -9,6 +8,12 @@ var current_fps_index: int = 1
 
 func setup(list: VBoxContainer) -> void:
 	settings_list = list
+	# Находим индекс ограничения, которое было загружено из CFG.
+	var saved_index := fps_limits.find(SettingsManager.fps_limit)
+	if saved_index >= 0:
+		current_fps_index = saved_index
+	else:
+		current_fps_index = fps_limits.find(60)
 
 
 func show_settings() -> void:
@@ -42,7 +47,7 @@ func _add_setting(label_text: String, button_text: String) -> Button:
 
 
 func _toggle_fps_visibility(button: Button) -> void:
-	SettingsManager.show_fps = !SettingsManager.show_fps
+	SettingsManager.set_show_fps(not SettingsManager.show_fps)
 	button.text = _get_fps_visibility_name()
 
 
@@ -51,13 +56,8 @@ func _get_fps_visibility_name() -> String:
 
 
 func _toggle_fps_limit(button: Button) -> void:
-	current_fps_index += 1
-
-	if current_fps_index >= fps_limits.size():
-		current_fps_index = 0
-
-	SettingsManager.fps_limit = fps_limits[current_fps_index]
-	Engine.max_fps = SettingsManager.fps_limit
+	current_fps_index = (current_fps_index + 1) % fps_limits.size()
+	SettingsManager.set_fps_limit(fps_limits[current_fps_index])
 	button.text = _get_fps_limit_name()
 
 
