@@ -1,0 +1,137 @@
+name: Build AYaK Release
+
+on:
+  # Запускается при отправке тега версии, например v0.1.3.
+  push:
+    tags:
+      - 'v*'
+
+  # Позволяет вручную собрать уже существующий тег.
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Тег версии для сборки, например v0.1.3"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ayak-build-${{ github.event.inputs.tag || github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build ${{ matrix.platform }}
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: Windows x86_64
+            preset: Windows Desktop
+            output: build/AYaK-windows-x86_64.exe
+            package: AYaK-windows-x86_64.zip
+            kind: windows
+          - platform: Linux x86_64
+            preset: Linux
+            output: build/AYaK-linux-x86_64
+            package: AYaK-linux-x86_64.tar.gz
+            kind: linux
+
+    steps:
+      - name: Get repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.tag || github.ref }}
+
+      - name: Install Godot 4.7 and export templates
+        uses: chickensoft-games/setup-godot@v2
+        with:
+          version: 4.7.0
+          use-dotnet: false
+          include-templates: true
+
+      - name: Prepare build directory
+        run: mkdir -p build dist
+
+      - name: Export game
+        shell: bash
+        env:
+          PRESET: ${{ matrix.preset }}
+          OUTPUT: ${{ matrix.output }}
+        run: |
+          godot --headless --path . --export-release "$PRESET" "$OUTPUT"
+
+          # Проверяем, что исполняемый файл и отдельный PCK действительно созданы.
+          test -s "$OUTPUT"
+          test -s "${OUTPUT%.*}.pck"
+
+      - name: Package Windows build
+        if: matrix.kind == 'windows'
+        env:
+          OUTPUT: ${{ matrix.output }}
+          PACKAGE: ${{ matrix.package }}
+        run: |
+          zip -j "dist/$PACKAGE" "$OUTPUT" "${OUTPUT%.*}.pck"
+          test -s "dist/$PACKAGE"
+
+      - name: Package Linux build
+        if: matrix.kind == 'linux'
+        env:
+          OUTPUT: ${{ matrix.output }}
+          PACKAGE: ${{ matrix.package }}
+        run: |
+          chmod +x "$OUTPUT"
+          tar -czf "dist/$PACKAGE" -C build "$(basename "$OUTPUT")" "$(basename "${OUTPUT%.*}.pck")"
+          test -s "dist/$PACKAGE"
+
+      - name: Upload packaged build
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.kind }}-build
+          path: dist/${{ matrix.package }}
+          if-no-files-found: error
+          retention-days: 14
+
+  create-draft-release:
+    name: Attach builds to a draft release
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download all builds
+        uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+
+      - name: Check release files
+        run: |
+          ls -lh dist
+          test -s dist/AYaK-windows-x86_64.zip
+          test -s dist/AYaK-linux-x86_64.tar.gz
+
+      - name: Create or update draft release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ inputs.tag || github.ref_name }}
+        run: |
+          # Не загружаем файлы в уже опубликованный релиз.
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            IS_DRAFT=$(gh release view "$TAG" --json isDraft --jq '.isDraft')
+
+            if [ "$IS_DRAFT" != "true" ]; then
+              echo "::error::Релиз $TAG уже опубликован. Автоматическая перезапись запрещена."
+              exit 1
+            fi
+
+            gh release upload "$TAG" dist/* --clobber
+          else
+            gh release create "$TAG" dist/* \
+              --draft \
+              --generate-notes \
+              --title "AYaK $TAG"
+          fi
