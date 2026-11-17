@@ -93,15 +93,18 @@ jobs:
             const owner = context.repo.owner;
             const repo = context.repo.repo;
             const labelName = 'automated';
+            const bugLabel = 'bug';
             
-            try {
-              await github.rest.issues.getLabel({ owner, repo, name: labelName });
-            } catch {
+            for (const label of [labelName, bugLabel]) {
+              try {
+                await github.rest.issues.getLabel({ owner, repo, name: label });
+              } catch {
               await github.rest.issues.createLabel({
-                owner, repo, name: labelName,
-                color: '7057ff',
-                description: 'Создано автоматической проверкой Godot'
-              });
+                owner, repo, name: label,
+                  color: label === bugLabel ? 'd73a4a' : '7057ff',
+                  description: label === bugLabel ? 'Ошибка проекта' : 'Создано автоматической проверкой Godot'
+                });
+              }
             }
 
             const { data: existing } = await github.rest.issues.listForRepo({
@@ -146,7 +149,7 @@ jobs:
               } else {
                 const created = await github.rest.issues.create({
                   owner, repo, title, body,
-                  labels: ['bug', labelName]
+                  labels: [bugLabel, labelName]
                 });
                 core.info('Создана Issue #' + created.data.number);
               }
