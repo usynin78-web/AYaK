@@ -32,5 +32,5 @@ func _process(_delta: float) -> void:
 
 func _input(event) -> void:
 	if event.is_action_pressed("fps_toggle"):
-		SettingsManager.show_fps = !SettingsManager.show_fps
+		SettingsManager.set_show_fps(not SettingsManager.show_fps)
 		visible = SettingsManager.show_fps
