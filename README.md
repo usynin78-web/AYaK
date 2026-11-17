@@ -2,7 +2,7 @@
 
 **AYaK (Are You a Killer?)** is a 2D game in active development, built with **Godot 4.7** and primarily written in **GDScript**.
 
-The project is an unfinished development build. Features, controls, and technical requirements may change between releases.
+AYaK is a work in progress. Features, controls, and technical requirements may change between releases.
 
 ## Project status
 
