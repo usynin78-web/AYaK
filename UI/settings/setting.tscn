@@ -69,7 +69,7 @@ theme = ExtResource("3_vknp2")
 theme_override_font_sizes/font_size = 63
 text = "Графика"
 
-[node name="language" type="Button" parent="LeftPanel"]
+[node name="language" type="Button" parent="LeftPanel" unique_id=1496581825]
 layout_mode = 0
 offset_left = 30.0
 offset_top = 230.0
@@ -124,6 +124,6 @@ scale = Vector2(5.6400013, 23.56)
 layout_mode = 0
 offset_left = 9.999999
 offset_top = 144.0
-offset_right = 50.0
+offset_right = 84.62747
 offset_bottom = 148.0
 scale = Vector2(48.320004, 3.9999998)
