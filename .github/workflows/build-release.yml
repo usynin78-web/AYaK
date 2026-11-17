@@ -113,40 +113,29 @@ jobs:
         with:
           ref: ${{ inputs.tag || github.ref }}
 
-      - name: Get current README release notes
-        uses: actions/checkout@v4
-        with:
-          ref: main
-          path: release-notes-source
-
       - name: Download Windows and Linux builds
         uses: actions/download-artifact@v4
         with:
           path: dist
           merge-multiple: true
 
-      - name: Prepare release notes from README
-        shell: bash
+      - name: Generate release notes from commits and pull requests
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ inputs.tag || github.ref_name }}
         run: |
-          # Берём только текст между специальными маркерами в README.
-          awk '
-            /<!-- AYaK:NEXT-RELEASE:START -->/ { capture=1; next }
-            /<!-- AYaK:NEXT-RELEASE:END -->/ { capture=0 }
-            capture { print }
-          ' release-notes-source/README.md > release-notes.md
+          # GitHub собирает описание изменений с момента предыдущего релиза.
+          gh api --method POST \
+            "repos/${GITHUB_REPOSITORY}/releases/generate-notes" \
+            -f tag_name="$TAG" \
+            --jq '.body' > release-notes.md
 
-          # Не публикуем релиз с пустым описанием или шаблонной подсказкой.
           if ! grep -q '[^[:space:]]' release-notes.md; then
-            echo "::error::В README пустой блок NEXT-RELEASE."
+            echo "::error::GitHub не вернул описание изменений."
             exit 1
           fi
 
-          if grep -q '_Add the next release notes here' release-notes.md; then
-            echo "::error::Сначала заполни блок NEXT-RELEASE в README.md."
-            exit 1
-          fi
-
-          echo "Release notes:"
+          echo "Generated release notes:"
           cat release-notes.md
 
       - name: Check build files
