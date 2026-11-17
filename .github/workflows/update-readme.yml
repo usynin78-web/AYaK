@@ -1,6 +1,11 @@
 name: Update README on Release
 
 on:
+  # Проверяем workflow при изменении его самого.
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/update-readme.yml'
   release:
     types: [published]
   workflow_dispatch:
@@ -74,7 +79,7 @@ jobs:
               ? 'Предварительный релиз'
               : 'Релиз';
 
-            const notes = release.body?.trim() || '_Описание релиза не добавлено._';
+            const notes = release.body?.trim() || '_No release notes provided._';
 
             const assets = (release.assets || []).map(asset => {
               const sizeMb = (asset.size / 1024 / 1024).toFixed(1);
@@ -83,7 +88,7 @@ jobs:
 
             const downloads = assets.length
               ? assets.join('\n')
-              : '_К релизу пока не прикреплены файлы._';
+              : '_No files attached to this release._';
 
             // Эти блоки README обновляются автоматически.
             // Остальной текст файла скрипт не изменяет.
@@ -97,13 +102,13 @@ jobs:
               '<!-- AYaK:RELEASE:START -->',
               `**${tag}** · ${date} · ${releaseType}`,
               '',
-              `[Открыть страницу релиза](${release.html_url})`,
+              `[Open release page](${release.html_url})`,
               '',
-              '### Изменения',
+              '### Changes',
               '',
               notes,
               '',
-              '### Файлы',
+              '### Downloads',
               '',
               downloads,
               '<!-- AYaK:RELEASE:END -->'
@@ -130,7 +135,7 @@ jobs:
             readme = replaceManagedBlock(readme, 'RELEASE', releaseBlock);
 
             fs.writeFileSync('README.md', readme, 'utf8');
-            core.info(`README подготовлен для релиза ${tag} от ${date}.`);
+            core.info(`README prepared for release ${tag} (${date}).`);
 
       - name: Commit README changes
         shell: bash
