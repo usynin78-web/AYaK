@@ -6,6 +6,7 @@ extends Node2D
 @onready var player_health: Node = $c3/HealthComponent
 @onready var notification: Control = $UI/Notification
 @onready var game_over: Control = $UI/GameOver
+@onready var day_manager: Node = $DayManager
 
 
 func _ready() -> void:
@@ -49,4 +50,6 @@ func _on_health_amount_changed(amount: int) -> void:
 # Получаем сигнал о смерти Кира.
 func _on_player_died() -> void:
 	notification.notify_death()
+	day_manager.stop_day_cycle()
 	game_over.show()
+	get_tree().paused = true

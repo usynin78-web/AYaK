@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cmgcjwdltpuys"]
 
-[ext_resource type="Script" path="res://UI/game_over/game_over.gd" id="1_script"]
 [ext_resource type="FontFile" uid="uid://bvvpcwpmb13hq" path="res://font/mt_tare-regular/MT_TARE Regular/MT_TARE Regular.ttf" id="1_8dbwb"]
+[ext_resource type="Script" uid="uid://dvotc3jempsrm" path="res://UI/game_over/game_over.gd" id="1_script"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_4qqaj"]
 font = ExtResource("1_8dbwb")
@@ -16,7 +16,6 @@ Button/font_sizes/font_size = 80
 Button/fonts/font = ExtResource("1_8dbwb")
 
 [node name="GameOver" type="Control" unique_id=133037511 groups=["game_over"]]
-script = ExtResource("1_script")
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -24,12 +23,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_script")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=721965493]
 layout_mode = 0
 offset_right = 1917.0
 offset_bottom = 1082.0
-color = Color(0, 0, 0, 0.5568628)
+color = Color(0, 0, 0, 0.56078434)
 
 [node name="Label" type="Label" parent="." unique_id=1975559655]
 layout_mode = 1

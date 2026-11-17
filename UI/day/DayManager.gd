@@ -10,6 +10,8 @@ extends Node
 # Номер текущего дня.
 var current_day: int = 1
 
+var stopped: bool = false
+
 # Нужно ли показывать заставку при запуске.
 var show_start_animation: bool = true
 
@@ -49,10 +51,15 @@ func _ready() -> void:
 
 # Основной цикл игровых дней.
 func _run_day_cycle() -> void:
+	if stopped:
+		return
+
 	# При новой игре показываем первую заставку.
 	if show_start_animation:
 		get_tree().paused = true
 		await day_transition.show_day(current_day)
+		if stopped:
+			return
 
 	# Начинаем игровой день.
 	get_tree().paused = false
@@ -60,7 +67,10 @@ func _run_day_cycle() -> void:
 
 	while true:
 		# Ждём окончания игрового дня.
-		await get_tree().create_timer(day_duration).timeout
+		await get_tree().create_timer(day_duration, false).timeout
+
+		if stopped:
+			return
 
 		# Останавливаем игровой процесс.
 		get_tree().paused = true
@@ -86,6 +96,13 @@ func _run_day_cycle() -> void:
 		# Показываем заставку нового дня.
 		await day_transition.show_day(current_day)
 
+		if stopped:
+			return
+
 		# Запускаем следующий день.
 		get_tree().paused = false
 		print("Начался день ", current_day)
+
+
+func stop_day_cycle() -> void:
+	stopped = true

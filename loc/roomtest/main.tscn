@@ -5,10 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://b8lfkrsaj8rb3" path="res://animch/c3/c3.tscn" id="3_igtjs"]
 [ext_resource type="PackedScene" uid="uid://cfjm7vprwitbq" path="res://UI/HP/hp.tscn" id="4_0n8at"]
 [ext_resource type="PackedScene" uid="uid://mjfvks3ss7is" path="res://UI/ign/notification.tscn" id="5_fa5je"]
-[ext_resource type="PackedScene" uid="uid://cmgcjwdltpuys" path="res://UI/game_over/game_over.tscn" id="7_game_over"]
 [ext_resource type="Script" uid="uid://diwvg5vkk2jr1" path="res://UI/dev/debug.gd" id="5_ylkyd"]
 [ext_resource type="PackedScene" uid="uid://crhoo7lvuoxwe" path="res://UI/mtv/mtv.tscn" id="6_fa5je"]
 [ext_resource type="Script" uid="uid://dsjmm7jq1qu3f" path="res://UI/mobile_controls.gd" id="6_mobile"]
+[ext_resource type="PackedScene" uid="uid://cmgcjwdltpuys" path="res://UI/game_over/game_over.tscn" id="7_game_over"]
 [ext_resource type="PackedScene" uid="uid://ceksw8vdqxxn" path="res://UI/day/day_transition.tscn" id="7_y1ync"]
 [ext_resource type="PackedScene" uid="uid://ckbi5i231mv4f" path="res://UI/invetory/inventory.tscn" id="8_owyje"]
 [ext_resource type="Resource" uid="uid://kdoouu8tthyi" path="res://UI/invetory/item/test_item.tres" id="8_yixg8"]
@@ -50,12 +50,12 @@ position = Vector2(982.00006, 584.00006)
 offset_top = -9.0
 offset_bottom = -9.0
 
-[node name="GameOver" parent="UI" unique_id=133037511 groups=["game_over"] instance=ExtResource("7_game_over")]
-
 [node name="mtv" parent="UI" unique_id=1657242017 instance=ExtResource("6_fa5je")]
 
 [node name="Inventory" parent="UI" unique_id=1625857414 instance=ExtResource("8_owyje")]
 test_item = ExtResource("8_yixg8")
+
+[node name="GameOver" parent="UI" unique_id=133037511 instance=ExtResource("7_game_over")]
 
 [node name="MobileControls" type="CanvasLayer" parent="." unique_id=389121593]
 
