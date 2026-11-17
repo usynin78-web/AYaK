@@ -113,6 +113,12 @@ jobs:
         with:
           ref: ${{ inputs.tag || github.ref }}
 
+      - name: Get current README release notes
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: release-notes-source
+
       - name: Download Windows and Linux builds
         uses: actions/download-artifact@v4
         with:
@@ -127,7 +133,7 @@ jobs:
             /<!-- AYaK:NEXT-RELEASE:START -->/ { capture=1; next }
             /<!-- AYaK:NEXT-RELEASE:END -->/ { capture=0 }
             capture { print }
-          ' README.md > release-notes.md
+          ' release-notes-source/README.md > release-notes.md
 
           # Не публикуем релиз с пустым описанием или шаблонной подсказкой.
           if ! grep -q '[^[:space:]]' release-notes.md; then
