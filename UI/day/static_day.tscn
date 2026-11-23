@@ -101,7 +101,7 @@ accessibility_name = "Начать заново"
 theme = SubResource("Theme_gaj4n")
 theme_type_variation = &"FlatButton"
 text = "Продолжить
-день 2"
+"
 
 [node name="retry_day" type="Button" parent="." unique_id=1729299179]
 layout_mode = 0

@@ -59,6 +59,7 @@ test_item = ExtResource("8_yixg8")
 [node name="GameOver" parent="UI" unique_id=133037511 instance=ExtResource("7_game_over")]
 
 [node name="Control" parent="UI" unique_id=483666997 instance=ExtResource("10_cxcrd")]
+visible = false
 
 [node name="MobileControls" type="CanvasLayer" parent="." unique_id=389121593]
 
