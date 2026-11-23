@@ -67,7 +67,7 @@ func _run_day_cycle() -> void:
 
 	while true:
 		# Ждём окончания игрового дня.
-		await get_tree().create_timer(day_duration, false).timeout
+		await get_tree().create_timer(day_duration, false, false, true).timeout
 
 		if stopped:
 			return
