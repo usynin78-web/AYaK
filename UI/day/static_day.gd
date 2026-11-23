@@ -51,7 +51,7 @@ func _apply_responsive_font_sizes() -> void:
 	$comment.label_settings.font_size = roundi(54.0 * scale_factor)
 
 	# Размер текста кнопок меняется вместе с размером экрана.
-	var button_font_size := roundi(48.0 * scale_factor)
+	var button_font_size := roundi(64.0 * scale_factor)
 	$next_day.add_theme_font_size_override("font_size", button_font_size)
 	$retry_day.add_theme_font_size_override("font_size", button_font_size)
 	$menu.add_theme_font_size_override("font_size", button_font_size)
