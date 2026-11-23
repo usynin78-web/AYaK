@@ -14,6 +14,8 @@ func _ready() -> void:
 
 	# Запоминаем исходное положение корневого элемента.
 	start_position = position
+	resized.connect(_apply_responsive_font_sizes)
+	_apply_responsive_font_sizes()
 
 	# Подключаем кнопки и переводим статичные надписи.
 	$next_day.pressed.connect(_on_next_day_pressed)
@@ -36,6 +38,23 @@ func _ready() -> void:
 
 	# Показываем экран плавно, даже если игровое дерево на паузе.
 	_play_entrance_animation()
+
+
+# Подбирает размер шрифта под текущее разрешение окна.
+func _apply_responsive_font_sizes() -> void:
+	# Базовые размеры рассчитаны на проектное разрешение 1920x1080.
+	var scale_factor := minf(size.x / 1920.0, size.y / 1080.0)
+	scale_factor = clampf(scale_factor, 0.55, 1.15)
+
+	$"static name".label_settings.font_size = roundi(96.0 * scale_factor)
+	$static.label_settings.font_size = roundi(91.0 * scale_factor)
+	$comment.label_settings.font_size = roundi(54.0 * scale_factor)
+
+	# Размер текста кнопок меняется вместе с размером экрана.
+	var button_font_size := roundi(64.0 * scale_factor)
+	$next_day.add_theme_font_size_override("font_size", button_font_size)
+	$retry_day.add_theme_font_size_override("font_size", button_font_size)
+	$menu.add_theme_font_size_override("font_size", button_font_size)
 
 
 # Плавно проявляет экран и немного сдвигает его на исходное место.
