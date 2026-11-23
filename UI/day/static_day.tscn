@@ -16,7 +16,7 @@ font = ExtResource("1_inbnh")
 font_size = 54
 
 [sub_resource type="Theme" id="Theme_gaj4n"]
-Button/font_sizes/font_size = 48
+Button/font_sizes/font_size = 64
 Button/fonts/font = ExtResource("1_inbnh")
 
 [node name="Control" type="Control" unique_id=483666997]
@@ -93,6 +93,7 @@ anchor_top = 0.22
 anchor_right = 0.99
 anchor_bottom = 0.40
 alignment = 1
+autowrap_mode = 2
 accessibility_name = "Продолжить"
 theme = SubResource("Theme_gaj4n")
 theme_type_variation = &"FlatButton"
@@ -105,6 +106,7 @@ anchor_top = 0.43
 anchor_right = 0.99
 anchor_bottom = 0.61
 alignment = 1
+autowrap_mode = 2
 accessibility_name = "Начать заново"
 theme = SubResource("Theme_gaj4n")
 theme_type_variation = &"FlatButton"
@@ -117,6 +119,7 @@ anchor_top = 0.73
 anchor_right = 0.99
 anchor_bottom = 0.91
 alignment = 1
+autowrap_mode = 2
 accessibility_name = "В главное меню"
 theme = SubResource("Theme_gaj4n")
 theme_type_variation = &"FlatButton"
