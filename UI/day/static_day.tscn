@@ -30,100 +30,91 @@ script = ExtResource("1_umhmt")
 
 [node name="static name" type="Label" parent="." unique_id=2134443348]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -648.0
-offset_top = 33.0
-offset_right = 648.0
-offset_bottom = 130.0
-grow_horizontal = 2
+anchor_left = 0.08
+anchor_top = 0.02
+anchor_right = 0.92
+anchor_bottom = 0.13
 text = "Статистика дня"
-autowrap_mode = 3
+horizontal_alignment = 1
+vertical_alignment = 1
 label_settings = SubResource("LabelSettings_f1jrm")
 
 [node name="HSeparator" type="HSeparator" parent="." unique_id=1342417894]
-layout_mode = 0
-offset_left = -95.0
-offset_top = 152.0
-offset_right = -20.372528
-offset_bottom = 156.0
-scale = Vector2(48.320004, 3.9999998)
+layout_mode = 1
+anchor_right = 1.0
+anchor_top = 0.14
+anchor_bottom = 0.14
+offset_bottom = 4.0
 
 [node name="VSeparator" type="VSeparator" parent="." unique_id=185963336]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 240.0
-offset_top = -356.0
-offset_right = 244.0
-offset_bottom = -316.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(5.6400013, 23.56)
+anchor_left = 0.63
+anchor_top = 0.14
+anchor_right = 0.63
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_right = 2.0
 
 [node name="HSeparator2" type="HSeparator" parent="." unique_id=316218549]
-layout_mode = 0
-offset_left = -162.0
-offset_top = 797.00006
-offset_right = -87.37253
-offset_bottom = 801.00006
-scale = Vector2(18.360003, 3.9999998)
+layout_mode = 1
+anchor_left = 0.0
+anchor_top = 0.65
+anchor_right = 0.63
+anchor_bottom = 0.65
+offset_bottom = 4.0
 
 [node name="static" type="Label" parent="." unique_id=1882502345]
-layout_mode = 0
-offset_left = 42.0
-offset_top = 281.0
-offset_right = 1258.0
-offset_bottom = 540.0
+layout_mode = 1
+anchor_left = 0.025
+anchor_top = 0.23
+anchor_right = 0.60
+anchor_bottom = 0.60
 text = "Здоровье:
 Мотивация:"
+autowrap_mode = 3
+vertical_alignment = 1
 label_settings = SubResource("LabelSettings_oald3")
 
 [node name="comment" type="Label" parent="." unique_id=1359640197]
-layout_mode = 0
-offset_left = 48.0
-offset_top = 860.0
-offset_right = 669.0
-offset_bottom = 915.0
+layout_mode = 1
+anchor_left = 0.03
+anchor_top = 0.68
+anchor_right = 0.60
+anchor_bottom = 0.97
 text = "Комментарий:"
+autowrap_mode = 3
+vertical_alignment = 0
 label_settings = SubResource("LabelSettings_wais2")
 
 [node name="next_day" type="Button" parent="." unique_id=136136576]
-layout_mode = 0
-offset_left = 1158.0
-offset_top = 286.0
-offset_right = 1966.0
-offset_bottom = 422.0
-accessibility_name = "Начать заново"
+layout_mode = 1
+anchor_left = 0.66
+anchor_top = 0.23
+anchor_right = 0.98
+anchor_bottom = 0.39
+accessibility_name = "Продолжить"
 theme = SubResource("Theme_gaj4n")
 theme_type_variation = &"FlatButton"
-text = "Продолжить
-"
+text = "Продолжить"
 
 [node name="retry_day" type="Button" parent="." unique_id=1729299179]
-layout_mode = 0
-offset_left = 1166.0
-offset_top = 486.0
-offset_right = 1974.0
-offset_bottom = 622.0
+layout_mode = 1
+anchor_left = 0.66
+anchor_top = 0.43
+anchor_right = 0.98
+anchor_bottom = 0.59
 accessibility_name = "Начать заново"
 theme = SubResource("Theme_gaj4n")
 theme_type_variation = &"FlatButton"
-text = "Начать
-заново"
+text = "Начать заново"
 
 [node name="menu" type="Button" parent="." unique_id=885584774]
-layout_mode = 0
-offset_left = 1162.0
-offset_top = 877.0
-offset_right = 1970.0
-offset_bottom = 1013.0
-accessibility_name = "Начать заново"
+layout_mode = 1
+anchor_left = 0.66
+anchor_top = 0.74
+anchor_right = 0.98
+anchor_bottom = 0.90
+accessibility_name = "В главное меню"
 theme = SubResource("Theme_gaj4n")
 theme_type_variation = &"FlatButton"
-text = "Вернуться
-в меню"
+text = "В главное меню"
