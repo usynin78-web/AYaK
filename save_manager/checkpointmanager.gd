@@ -340,3 +340,25 @@ func _is_valid_checkpoint(config: ConfigFile) -> bool:
 		and config.has_section_key("player", "y")
 		and config.has_section_key("player", "hp")
 	)
+
+# Увеличивает номер дня после подтверждения игроком.
+# HP, мотивация и остальные данные сохранения остаются прежними.
+func advance_day() -> bool:
+	var config := ConfigFile.new()
+
+	if config.load(SAVE_FILE) != OK or not _is_valid_checkpoint(config):
+		push_error("Не удалось продолжить игру: сохранение дня не найдено.")
+		return false
+
+	last_day = int(config.get_value("player", "day", last_day)) + 1
+	config.set_value("player", "day", last_day)
+
+	var err := config.save(SAVE_FILE)
+
+	if err != OK:
+		push_error("Не удалось сохранить номер следующего дня.")
+		return false
+
+	has_checkpoint = true
+	print("Подготовлен день ", last_day)
+	return true
