@@ -1,4 +1,3 @@
-
 extends Control
 
 
@@ -20,25 +19,25 @@ func _ready() -> void:
 
 # Обновляет показатели и комментарий.
 func update_statistics(hp: int, mtv: int) -> void:
-	$static.text = "Здоровье: %d\nМотивация: %d" % [hp, mtv]
+	$static.text = tr("Здоровье:") + " %d\n" + tr("Мотивация:") % [hp, mtv]
 	$comment.text = get_day_comment(hp, mtv)
 
 
 # Выбирает комментарий по результатам дня.
 func get_day_comment(hp: int, mtv: int) -> String:
 	if hp == 225 and mtv == 100:
-		return "Комментарий: Все\nподозрительно хорошо идёт!"
+		return tr("Комментарий:") + " " + tr("Все подозрительно хорошо идёт!")
 
 	elif hp >= 170 and hp <= 215 and mtv >= 75 and mtv <= 85:
-		return "Комментарий: \nНеплохо идут дела!"
+		return tr("Комментарий:") + " " + tr("Неплохо идут дела!")
 
 	elif hp >= 100 and hp <= 169 and mtv >= 45 and mtv <= 74:
-		return "Комментарий: Норм"
+		return tr("Комментарий:") + " " + tr("Норм")
 
-	elif hp <= 100 and mtv <= 45:
-		return "Коментарий: Плохо дело!"
+	elif hp < 100 and mtv < 45:
+		return tr("Комментарий:") + " " + tr("Такое себе дело!")
 
-	return "Комментарий: Без\nкомментариев."
+	return tr("Комментарий:") + " " + tr("Без комментариев.")
 
 
 # Продолжает игру со следующего дня.
