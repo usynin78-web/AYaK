@@ -19,7 +19,6 @@ var language_settings
 # Запоминает открытую вкладку.
 var current_tab: String = "screen"
 
-
 func _ready() -> void:
 	# Создаём модули настроек.
 	screen_settings = ScreenSettings.new(settings_list)
