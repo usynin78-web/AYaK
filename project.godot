@@ -28,7 +28,6 @@ CheckpointManager="*res://save_manager/checkpointmanager.gd"
 ModManagere="*uid://dor11g8clajh6"
 SettingsManager="*uid://dug0rd58htyc3"
 LocalisationManager="*res://UI/localisation/localisation_manager.gd"
-CharacterSeparationManager="*uid://crfoye1amar0f"
 
 [display]
 

@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://ceksw8vdqxxn" path="res://UI/day/day_transition.tscn" id="7_y1ync"]
 [ext_resource type="PackedScene" uid="uid://ckbi5i231mv4f" path="res://UI/invetory/inventory.tscn" id="8_owyje"]
 [ext_resource type="Resource" uid="uid://kdoouu8tthyi" path="res://UI/invetory/item/test_item.tres" id="8_yixg8"]
+[ext_resource type="PackedScene" uid="uid://b5thgab3hmly1" path="res://UI/day/static_day.tscn" id="10_cxcrd"]
 [ext_resource type="Script" uid="uid://3fnb51h6xqhd" path="res://UI/day/DayManager.gd" id="10_owyje"]
 
 [sub_resource type="Animation" id="Animation_sjkhc"]
@@ -56,6 +57,8 @@ offset_bottom = -9.0
 test_item = ExtResource("8_yixg8")
 
 [node name="GameOver" parent="UI" unique_id=133037511 instance=ExtResource("7_game_over")]
+
+[node name="Control" parent="UI" unique_id=483666997 instance=ExtResource("10_cxcrd")]
 
 [node name="MobileControls" type="CanvasLayer" parent="." unique_id=389121593]
 
@@ -106,6 +109,6 @@ script = ExtResource("5_ylkyd")
 [node name="DayManager" type="Node" parent="." unique_id=1632076012 node_paths=PackedStringArray("day_transition")]
 script = ExtResource("10_owyje")
 day_transition = NodePath("../FadeLayer/DayTransition")
-day_duration = 1200.0
+day_duration = 30.0
 
 [connection signal="animation_finished" from="FadeLayer/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

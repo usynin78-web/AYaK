@@ -1,6 +1,13 @@
+<<<<<<< HEAD
 extends Control
 
 # Текстовые элементы экрана статистики.
+=======
+
+extends Control
+
+# Текстовые элементы статистики.
+>>>>>>> 2da01f3 (Update static day)
 @onready var static_text: Button = $static
 @onready var comment_text: Button = $comment
 
@@ -11,14 +18,22 @@ extends Control
 
 
 func _ready() -> void:
+<<<<<<< HEAD
 	# Экран должен работать, даже если игровое дерево поставлено на паузу.
 	process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 
 	# Подключаем сигналы нажатия кнопок.
+=======
+	# Экран должен работать даже при остановленной игре.
+	process_mode = Node.PROCESS_MODE_WHEN_PAUSED
+
+	# Подключаем действия кнопок.
+>>>>>>> 2da01f3 (Update static day)
 	next_day_button.pressed.connect(_on_next_day_pressed)
 	retry_day_button.pressed.connect(_on_retry_day_pressed)
 	menu_button.pressed.connect(_on_menu_pressed)
 
+<<<<<<< HEAD
 	# Берём реальные сохранённые показатели завершившегося дня.
 	update_statistics(
 		CheckpointManager.last_health,
@@ -27,12 +42,27 @@ func _ready() -> void:
 
 
 # Выводит HP, мотивацию и комментарий по итогам дня.
+=======
+	# Получаем сохранённые показатели.
+	var hp: int = CheckpointManager.last_health
+	var mtv: int = CheckpointManager.last_motivation
+
+	# Выводим статистику.
+	update_statistics(hp, mtv)
+
+
+# Обновляет показатели и комментарий.
+>>>>>>> 2da01f3 (Update static day)
 func update_statistics(hp: int, mtv: int) -> void:
 	static_text.text = "Здоровье: %d\nМотивация: %d" % [hp, mtv]
 	comment_text.text = get_day_comment(hp, mtv)
 
 
+<<<<<<< HEAD
 # Подбирает комментарий по заданным диапазонам.
+=======
+# Выбирает комментарий по результатам дня.
+>>>>>>> 2da01f3 (Update static day)
 func get_day_comment(hp: int, mtv: int) -> String:
 	if hp == 225 and mtv == 100:
 		return "Все подозрительно хорошо идёт!"
@@ -46,6 +76,7 @@ func get_day_comment(hp: int, mtv: int) -> String:
 	elif hp < 100 and mtv < 45:
 		return "Такое себе дело!"
 
+<<<<<<< HEAD
 	# Нейтральный комментарий для сочетаний,
 	# которым пока не назначена отдельная реплика.
 	return "Без комментариев."
@@ -72,4 +103,30 @@ func _on_retry_day_pressed() -> void:
 func _on_menu_pressed() -> void:
 	get_tree().paused = false
 	CheckpointManager.clear_save()
+=======
+	return "..."
+
+
+# Продолжение игры.
+func _on_next_day_pressed() -> void:
+	get_tree().paused = false
+
+	# Возвращаемся в игровую сцену.
+	get_tree().change_scene_to_file("res://loc/roomtest/main.tscn")
+
+
+# Начало новой игры.
+func _on_retry_day_pressed() -> void:
+	get_tree().paused = false
+	CheckpointManager.clear_save()
+
+	get_tree().change_scene_to_file("res://loc/roomtest/main.tscn")
+
+
+# Возвращение в главное меню.
+func _on_menu_pressed() -> void:
+	get_tree().paused = false
+	CheckpointManager.clear_save()
+
+>>>>>>> 2da01f3 (Update static day)
 	get_tree().change_scene_to_file("res://UI/main menu/main menu.tscn")

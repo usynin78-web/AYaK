@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://cc3vjjgyt7j7s" path="res://animch/cube from claude/cube.tscn" id="5_4ojwl"]
 [ext_resource type="PackedScene" uid="uid://t0icfbp38p41" path="res://UI/HP/damage.tscn" id="5_n6j0u"]
 [ext_resource type="PackedScene" uid="uid://dkimxk1bjfqin" path="res://loc/roomtest/checkpoint.tscn" id="6_cr1la"]
-[ext_resource type="Script" uid="uid://dy6w2ywm52jhn" path="res://animch/cube from claude/character_separation_manager.gd" id="9_4ojwl"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_tfqo8"]
 vertices = PackedVector2Array(2223.1719, 1382.0313, -158.39063, 1385.9609, 437.47656, 728.9375, 1606.6719, 715.0469)
@@ -157,12 +156,6 @@ shape = SubResource("SegmentShape2D_tfqo8")
 position = Vector2(569, 118)
 shape = SubResource("SegmentShape2D_n6j0u")
 
-[node name="CharacterBody2D2" parent="." unique_id=866400287 instance=ExtResource("5_4ojwl")]
-position = Vector2(1073, 819)
-
-[node name="CharacterBody2D" parent="." unique_id=945709406 instance=ExtResource("5_4ojwl")]
-position = Vector2(739, 819)
-
 [node name="cake" parent="." unique_id=570425941 instance=ExtResource("4_tfqo8")]
 position = Vector2(1353, 791)
 
@@ -171,6 +164,12 @@ position = Vector2(1485, 728)
 
 [node name="checkpoint" parent="." unique_id=1504211689 instance=ExtResource("6_cr1la")]
 position = Vector2(523, 628)
+
+[node name="CharacterBody2D2" parent="." unique_id=866400287 instance=ExtResource("5_4ojwl")]
+position = Vector2(1073, 819)
+
+[node name="CharacterBody2D" parent="." unique_id=945709406 instance=ExtResource("5_4ojwl")]
+position = Vector2(739, 819)
 
 [node name="RouteRoom" type="Node2D" parent="." unique_id=1963344183]
 
@@ -199,6 +198,3 @@ position = Vector2(516, 817)
 
 [node name="Marker2D2" type="Marker2D" parent="RouteRoom2" unique_id=1666102796 groups=["point"]]
 position = Vector2(209, 1194)
-
-[node name="CharacterSeparationManager" type="Node" parent="." unique_id=1358400376]
-script = ExtResource("9_4ojwl")

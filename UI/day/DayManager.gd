@@ -4,7 +4,7 @@ extends Node
 @export var day_transition: Control
 
 # Продолжительность игрового дня в секундах.
-@export var day_duration: float = 1200.0
+@export var day_duration: float = 12.0
 
 # Номер дня, который сейчас проходит.
 var current_day: int = 1
