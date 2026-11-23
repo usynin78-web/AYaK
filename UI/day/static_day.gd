@@ -19,7 +19,7 @@ func _ready() -> void:
 
 # Обновляет показатели и комментарий.
 func update_statistics(hp: int, mtv: int) -> void:
-	$static.text = tr("Здоровье:") + " %d\n" + tr("Мотивация:") % [hp, mtv]
+	$static.text = "%s %d\n%s %d" % [tr("Здоровье:"), hp, tr("Мотивация:"), mtv]
 	$comment.text = get_day_comment(hp, mtv)
 
 
