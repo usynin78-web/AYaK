@@ -8,8 +8,11 @@ extends CharacterBody2D
 @export var min_wait_time := 1.0
 @export var max_wait_time := 3.0
 
-# Защита от застревания: если за это время кубик почти не сдвинулся,
-# он считает точку недостижимой и идёт к следующей.
+# Настройки отталкивания от Кира.
+@export var player_push_radius: float = 65.0
+@export var player_push_force: float = 700.0
+
+# Защита от застревания.
 @export var stuck_check_time := 0.6
 @export var stuck_min_distance := 8.0
 
@@ -53,6 +56,32 @@ func _ready() -> void:
 
 	health_component.health_changed.connect(_on_health_changed)
 	health_component.died.connect(_on_died)
+
+	_reset_stuck_check()
+
+
+# Возвращает силу, отталкивающую кубика от Кира.
+func _get_player_repulsion() -> Vector2:
+	var player := get_tree().get_first_node_in_group("player") as Node2D
+
+	if not is_instance_valid(player):
+		return Vector2.ZERO
+
+	var offset: Vector2 = global_position - player.global_position
+	var distance: float = offset.length()
+
+	if player_push_radius <= 0.0 or distance >= player_push_radius:
+		return Vector2.ZERO
+
+	# Если персонажи оказались в одной точке,
+	# выбираем запасное направление отталкивания.
+	if distance < 0.001:
+		offset = Vector2.RIGHT.rotated(float(get_instance_id() % 360))
+		distance = 0.001
+
+	var strength: float = 1.0 - distance / player_push_radius
+
+	return offset.normalized() * player_push_force * strength
 
 
 func _on_player_spotted(player: Node2D) -> void:
@@ -112,7 +141,7 @@ func _process(delta: float) -> void:
 	z_index = int(feet_marker.global_position.y)
 	update_perspective()
 
-	if velocity.length() > 1:
+	if velocity.length() > 1.0:
 		sway_time += delta * walk_speed
 		sprite.rotation = sin(sway_time) * deg_to_rad(walk_sway)
 	else:
@@ -124,35 +153,43 @@ func _physics_process(delta: float) -> void:
 
 
 func _move(delta: float) -> void:
-	if is_waiting:
-		_reset_stuck_check()
-		return
+	# Обычное движение по маршруту.
+	var route_velocity := Vector2.ZERO
 
-	# Проверяем, дошли ли до конца пути.
-	if navigation.is_navigation_finished():
-		velocity = Vector2.ZERO
-		_reset_stuck_check()
+	if not is_waiting and not navigation.is_navigation_finished():
+		var next_point: Vector2 = navigation.get_next_path_position()
+		var direction: Vector2 = global_position.direction_to(next_point)
 
-		if sprite.animation != "idle":
-			sprite.play("idle")
+		route_velocity = direction * speed
 
-		return
+	# Отталкивание от других кубиков.
+	var separation := Vector2.ZERO
 
-	var next_point: Vector2 = navigation.get_next_path_position()
-	var direction: Vector2 = global_position.direction_to(next_point)
-
-	var separation: Vector2 = Vector2.ZERO
-
-	if is_instance_valid(separation_manager):
+	if route_velocity != Vector2.ZERO and is_instance_valid(separation_manager):
 		separation = separation_manager.get_separation(self)
 
-	velocity = direction * speed + separation
+	# Отталкивание от Кира работает даже во время ожидания.
+	var player_push := _get_player_repulsion()
 
-	if sprite.animation != "walk":
-		sprite.play("walk")
+	# Объединяем все силы движения.
+	velocity = route_velocity + separation + player_push
 
+	# Двигаемся даже тогда, когда маршрут завершён или кубик ждёт.
 	move_and_slide()
-	_check_stuck(delta)
+
+	# Проверяем застревание только во время движения по маршруту.
+	if route_velocity.length() > 0.0:
+		_check_stuck(delta)
+	else:
+		_reset_stuck_check()
+
+	# Обновляем анимацию.
+	if velocity.length() > 1.0:
+		if sprite.animation != "walk":
+			sprite.play("walk")
+	else:
+		if sprite.animation != "idle":
+			sprite.play("idle")
 
 
 # Следит, не упёрся ли кубик в препятствие.
@@ -177,11 +214,10 @@ func _reset_stuck_check() -> void:
 func _on_stuck() -> void:
 	velocity = Vector2.ZERO
 
-	# Сообщаем патрулю, что точка "достигнута": он подождёт
-	# и отправит кубик к следующей точке.
+	# Сообщаем патрулю, что точка достигнута.
 	navigation.navigation_finished.emit()
 
-	# Если патруля нет, просто останавливаемся на месте.
+	# Если патруля нет, останавливаемся на месте.
 	if not is_waiting:
 		navigation.target_position = global_position
 

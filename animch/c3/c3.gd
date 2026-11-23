@@ -30,7 +30,7 @@ func _ready() -> void:
 	sprite_front.visible = true
 
 	health_component.died.connect(_on_died)
-
+	add_to_group("player")
 
 func _process(_delta: float) -> void:
 	z_index = int(feer_marker.global_position.y)

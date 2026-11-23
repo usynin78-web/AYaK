@@ -2,11 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://cmpcfdgabfrua" path="res://loc/roomtest/Без названия42_20251123133006.webp" id="1_ntlj5"]
 [ext_resource type="Script" uid="uid://ca0wtn2eiao0r" path="res://loc/roomtest/room.gd" id="1_xm4o8"]
-[ext_resource type="Script" uid="uid://c4scrkxiadgnl" path="res://animch/cube orig/patrol_controller.gd" id="2_j7is0"]
 [ext_resource type="Texture2D" uid="uid://eo0kncvs3yrg" path="res://egg/0.0.02.png" id="2_n6j0u"]
 [ext_resource type="PackedScene" uid="uid://uyosw5lg634q" path="res://UI/HP/cake.tscn" id="4_tfqo8"]
+[ext_resource type="PackedScene" uid="uid://cc3vjjgyt7j7s" path="res://animch/cube from claude/cube.tscn" id="5_4ojwl"]
 [ext_resource type="PackedScene" uid="uid://t0icfbp38p41" path="res://UI/HP/damage.tscn" id="5_n6j0u"]
-[ext_resource type="PackedScene" uid="uid://cc3vjjgyt7j7s" path="res://animch/cube from claude/cube.tscn" id="5_xm4o8"]
 [ext_resource type="PackedScene" uid="uid://dkimxk1bjfqin" path="res://loc/roomtest/checkpoint.tscn" id="6_cr1la"]
 [ext_resource type="Script" uid="uid://dy6w2ywm52jhn" path="res://animch/cube from claude/character_separation_manager.gd" id="9_4ojwl"]
 
@@ -14,6 +13,71 @@
 vertices = PackedVector2Array(2223.1719, 1382.0313, -158.39063, 1385.9609, 437.47656, 728.9375, 1606.6719, 715.0469)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(433, 719, -181, 1396, 2246, 1392, 1611, 705)])
+
+[sub_resource type="GDScript" id="GDScript_xm4o8"]
+script/source = "extends Node
+
+@export var cube: Array[CharacterBody2D]
+@export var routes: Array[Node2D]
+
+var npc_data := {}
+
+func _ready() -> void:
+	for npc in cube:
+		await npc.ready
+
+		var agent: NavigationAgent2D = npc.get_node(\"NavigationAgent2D\")
+		agent.navigation_finished.connect(_on_navigation_finished.bind(npc))
+
+		npc_data[npc] = {
+			\"points\": [],
+			\"current\": 0
+		}
+
+		_choose_route(npc)
+		_send_to_next_point(npc)
+
+
+func _choose_route(npc: CharacterBody2D) -> void:
+	if routes.is_empty():
+		return
+
+	var route: Node2D = routes.pick_random()
+
+	var points: Array[Marker2D] = []
+
+	for child in route.get_children():
+		if child is Marker2D:
+			points.append(child)
+
+	npc_data[npc][\"points\"] = points
+	npc_data[npc][\"current\"] = randi() % points.size()
+
+
+func _send_to_next_point(npc: CharacterBody2D) -> void:
+	var points: Array = npc_data[npc][\"points\"]
+
+	if points.is_empty():
+		return
+
+	var current: int = npc_data[npc][\"current\"]
+
+	npc.move_to(points[current].global_position)
+
+
+func _on_navigation_finished(npc: CharacterBody2D) -> void:
+	await npc.wait_before_next_move()
+
+	npc_data[npc][\"current\"] += 1
+
+	var current: int = npc_data[npc][\"current\"]
+	var points: Array = npc_data[npc][\"points\"]
+
+	if current >= points.size():
+		_choose_route(npc)
+
+	_send_to_next_point(npc)
+"
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ntlj5"]
 rough = true
@@ -52,8 +116,8 @@ texture = ExtResource("2_n6j0u")
 navigation_polygon = SubResource("NavigationPolygon_tfqo8")
 
 [node name="PatrolController" type="Node" parent="." unique_id=1424100493 node_paths=PackedStringArray("cube", "routes")]
-script = ExtResource("2_j7is0")
-cube = [NodePath("../CharacterBody2D3"), NodePath("../CharacterBody2D")]
+script = SubResource("GDScript_xm4o8")
+cube = [NodePath("../CharacterBody2D2"), NodePath("../CharacterBody2D")]
 routes = [NodePath("../RouteRoom"), NodePath("../RouteRoom2")]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1540922890]
@@ -93,11 +157,11 @@ shape = SubResource("SegmentShape2D_tfqo8")
 position = Vector2(569, 118)
 shape = SubResource("SegmentShape2D_n6j0u")
 
-[node name="CharacterBody2D3" parent="." unique_id=866400287 instance=ExtResource("5_xm4o8")]
-position = Vector2(753, 906)
+[node name="CharacterBody2D2" parent="." unique_id=866400287 instance=ExtResource("5_4ojwl")]
+position = Vector2(1073, 819)
 
-[node name="CharacterBody2D" parent="." unique_id=1033826796 instance=ExtResource("5_xm4o8")]
-position = Vector2(1258, 900)
+[node name="CharacterBody2D" parent="." unique_id=945709406 instance=ExtResource("5_4ojwl")]
+position = Vector2(739, 819)
 
 [node name="cake" parent="." unique_id=570425941 instance=ExtResource("4_tfqo8")]
 position = Vector2(1353, 791)
