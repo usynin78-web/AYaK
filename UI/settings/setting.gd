@@ -50,6 +50,7 @@ func _refresh_static_text() -> void:
 	graphic_button.text = tr("Графика")
 	language_button.text = tr("Язык")
 	exit_button.text = tr("В меню")
+	exit_button.text = tr("В меню")
 
 
 # Обновляет интерфейс после смены языка.
