@@ -16,7 +16,7 @@ font = ExtResource("1_inbnh")
 font_size = 54
 
 [sub_resource type="Theme" id="Theme_gaj4n"]
-Button/font_sizes/font_size = 64
+Button/font_sizes/font_size = 48
 Button/fonts/font = ExtResource("1_inbnh")
 
 [node name="Control" type="Control" unique_id=483666997]
@@ -88,10 +88,11 @@ label_settings = SubResource("LabelSettings_wais2")
 
 [node name="next_day" type="Button" parent="." unique_id=136136576]
 layout_mode = 1
-anchor_left = 0.66
-anchor_top = 0.23
-anchor_right = 0.98
-anchor_bottom = 0.39
+anchor_left = 0.65
+anchor_top = 0.22
+anchor_right = 0.99
+anchor_bottom = 0.40
+alignment = 1
 accessibility_name = "Продолжить"
 theme = SubResource("Theme_gaj4n")
 theme_type_variation = &"FlatButton"
@@ -99,10 +100,11 @@ text = "Продолжить"
 
 [node name="retry_day" type="Button" parent="." unique_id=1729299179]
 layout_mode = 1
-anchor_left = 0.66
+anchor_left = 0.65
 anchor_top = 0.43
-anchor_right = 0.98
-anchor_bottom = 0.59
+anchor_right = 0.99
+anchor_bottom = 0.61
+alignment = 1
 accessibility_name = "Начать заново"
 theme = SubResource("Theme_gaj4n")
 theme_type_variation = &"FlatButton"
@@ -110,10 +112,11 @@ text = "Начать заново"
 
 [node name="menu" type="Button" parent="." unique_id=885584774]
 layout_mode = 1
-anchor_left = 0.66
-anchor_top = 0.74
-anchor_right = 0.98
-anchor_bottom = 0.90
+anchor_left = 0.65
+anchor_top = 0.73
+anchor_right = 0.99
+anchor_bottom = 0.91
+alignment = 1
 accessibility_name = "В главное меню"
 theme = SubResource("Theme_gaj4n")
 theme_type_variation = &"FlatButton"
