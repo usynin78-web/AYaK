@@ -9,8 +9,8 @@ extends CharacterBody2D
 @export var max_wait_time := 3.0
 
 # Настройки отталкивания от Кира.
-@export var player_push_radius: float = 65.0
-@export var player_push_force: float = 700.0
+@export var player_push_radius: float = 100.0
+@export var player_push_force: float = 1200.0
 
 # Защита от застревания.
 @export var stuck_check_time := 0.6
@@ -67,20 +67,28 @@ func _get_player_repulsion() -> Vector2:
 	if not is_instance_valid(player):
 		return Vector2.ZERO
 
-	var offset: Vector2 = global_position - player.global_position
+	# Сравниваем точки ног, а не корни CharacterBody2D:
+	# у Кира и кубика спрайты и коллайдеры смещены относительно корней по-разному.
+	var player_feet := player.get_node_or_null("Marker2D") as Marker2D
+
+	if player_feet == null or not is_instance_valid(feet_marker):
+		return Vector2.ZERO
+
+	var offset: Vector2 = feet_marker.global_position - player_feet.global_position
 	var distance: float = offset.length()
 
 	if player_push_radius <= 0.0 or distance >= player_push_radius:
 		return Vector2.ZERO
 
-	# Если персонажи оказались в одной точке,
-	# выбираем запасное направление отталкивания.
+	# При полном совпадении точек отталкиваемся против движения Кира.
 	if distance < 0.001:
-		offset = Vector2.RIGHT.rotated(float(get_instance_id() % 360))
-		distance = 0.001
+		var player_velocity := (player as CharacterBody2D).velocity
+		if player_velocity.length_squared() > 1.0:
+			offset = -player_velocity.normalized()
+		else:
+			offset = Vector2.RIGHT.rotated(float(get_instance_id() % 360))
 
 	var strength: float = 1.0 - distance / player_push_radius
-
 	return offset.normalized() * player_push_force * strength
 
 
