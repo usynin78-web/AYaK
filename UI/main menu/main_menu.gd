@@ -63,7 +63,6 @@ func _on_start_pressed():
 
 	if tree:
 		CheckpointManager.clear_save()
-		
 		tree.change_scene_to_file("res://loc/roomtest/main.tscn")
 	else:
 		push_error(tr("SceneTree не найден"))
