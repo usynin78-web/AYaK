@@ -1,11 +1,21 @@
 extends Control
 
+# Настройки плавного появления экрана.
+@export var fade_duration: float = 0.75
+@export var slide_distance: float = 22.0
+
+var entrance_tween: Tween
+var start_position: Vector2
+
 
 func _ready() -> void:
 	# Экран продолжает работать во время паузы.
 	process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 
-	# Подключаем кнопки и сразу переводим все статичные надписи.
+	# Запоминаем исходное положение корневого элемента.
+	start_position = position
+
+	# Подключаем кнопки и переводим статичные надписи.
 	$next_day.pressed.connect(_on_next_day_pressed)
 	$retry_day.pressed.connect(_on_retry_day_pressed)
 	$menu.pressed.connect(_on_menu_pressed)
@@ -24,10 +34,38 @@ func _ready() -> void:
 		CheckpointManager.last_motivation
 	)
 
+	# Показываем экран плавно, даже если игровое дерево на паузе.
+	_play_entrance_animation()
+
+
+# Плавно проявляет экран и немного сдвигает его на исходное место.
+func _play_entrance_animation() -> void:
+	if entrance_tween and entrance_tween.is_running():
+		entrance_tween.kill()
+
+	modulate.a = 0.0
+	position = start_position + Vector2(0.0, slide_distance)
+
+	entrance_tween = create_tween()
+	entrance_tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+	entrance_tween.set_parallel(true)
+	entrance_tween.tween_property(
+		self,
+		"modulate:a",
+		1.0,
+		fade_duration
+	).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	entrance_tween.tween_property(
+		self,
+		"position",
+		start_position,
+		fade_duration
+	).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+
 
 # Обновляет показатели и комментарий.
 func update_statistics(hp: int, mtv: int) -> void:
-	$static.text = "%s %d\n%s %d" % [
+	$static.text = "%s %d\\n%s %d" % [
 		tr("Здоровье:"), hp,
 		tr("Мотивация:"), mtv
 	]
@@ -40,16 +78,12 @@ func get_day_comment(hp: int, mtv: int) -> String:
 
 	if hp == 225 and mtv == 100:
 		result_comment = tr("Все подозрительно хорошо идёт!")
-
 	elif hp >= 170 and hp <= 215 and mtv >= 75 and mtv <= 85:
 		result_comment = tr("Неплохо идут дела!")
-
 	elif hp >= 100 and hp <= 169 and mtv >= 45 and mtv <= 74:
 		result_comment = tr("Норм")
-
 	elif hp < 100 and mtv < 45:
 		result_comment = tr("Такое себе дело!")
-
 	else:
 		result_comment = tr("Без комментариев.")
 
