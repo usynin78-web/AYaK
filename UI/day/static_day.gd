@@ -65,7 +65,7 @@ func _play_entrance_animation() -> void:
 
 # Обновляет показатели и комментарий.
 func update_statistics(hp: int, mtv: int) -> void:
-	$static.text = "%s %d\\n%s %d" % [
+	$static.text = "%s %d\n%s %d" % [
 		tr("Здоровье:"), hp,
 		tr("Мотивация:"), mtv
 	]
