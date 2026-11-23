@@ -1,4 +1,3 @@
-
 extends Node2D
 
 @onready var fade_anim: AnimationPlayer = $FadeLayer/AnimationPlayer
@@ -51,5 +50,7 @@ func _on_health_amount_changed(amount: int) -> void:
 func _on_player_died() -> void:
 	notification.notify_death()
 	day_manager.stop_day_cycle()
-	game_over.show()
+
+	# Ставим игру на паузу до показа экрана проигрыша.
 	get_tree().paused = true
+	game_over.show_screen()
