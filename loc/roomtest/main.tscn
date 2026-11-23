@@ -106,6 +106,6 @@ script = ExtResource("5_ylkyd")
 [node name="DayManager" type="Node" parent="." unique_id=1632076012 node_paths=PackedStringArray("day_transition")]
 script = ExtResource("10_owyje")
 day_transition = NodePath("../FadeLayer/DayTransition")
-day_duration = 30.0
+day_duration = 1200.0
 
 [connection signal="animation_finished" from="FadeLayer/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
