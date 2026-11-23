@@ -15,6 +15,9 @@ func _ready() -> void:
 	$retry_day.text = tr("Начать заново")
 	$menu.text = tr("В главное меню")
 
+	# Переносим длинные комментарии внутри ширины левой панели.
+	$comment.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+
 	# Выводим сохранённую статистику.
 	update_statistics(
 		CheckpointManager.last_health,
