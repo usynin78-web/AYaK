@@ -9,7 +9,7 @@ var fps_limit: int = 60
 
 # Настройки экрана.
 var resolution: Vector2i = Vector2i(1920, 1080)
-var window_mode: int = DisplayServer.WINDOW_MODE_WINDOWED
+var window_mode: int = DisplayServer.WINDOW_MODE_FULLSCREEN
 var vsync_mode: int = DisplayServer.VSYNC_ENABLED
 
 
