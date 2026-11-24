@@ -34,12 +34,33 @@ These are development features; the game is not complete or feature-frozen.
 
 ### Changes
 
-**Full Changelog**: https://github.com/usynin78-web/AYaK/compare/v0.1.2.dev...v.0.1.3.dev
+### What's added:
+
+> 1. **English** localization
+> 2. **Game Over** screen
+> 3. **Daily statistics**, showing health and motivation, with the option to **continue** or **restart**
+> 4. NPC functionality has been **improved**. They no longer stick to each other and can also be pushed.
+
+What to expect in the next update (presumably):
+
+> 1. New stat – reputation and its change depending on the player's actions towards NPCs (no longer can they just kill them!)
+> 2. Dialogue system and first dialogue
+> 3. Inventory and the ability to pick up items
+
+(Fan fact: if you press the I key in this version, you'll see an early prototype of the inventory)
+
+Also, the bugs from #issue #16  have been successfully fixed.
 
 ### Downloads
 
-- [AYaK-linux-x86_64.tar.gz](https://github.com/usynin78-web/AYaK/releases/download/v.0.1.3.dev/AYaK-linux-x86_64.tar.gz) (40.6 MB)
-- [AYaK-windows-x86_64.zip](https://github.com/usynin78-web/AYaK/releases/download/v.0.1.3.dev/AYaK-windows-x86_64.zip) (49.9 MB)
+- [AYaK.apk](https://github.com/usynin78-web/AYaK/releases/download/v.0.1.3.dev/AYaK.apk) (125.7 MB)
+- [linux_32.tar.gz](https://github.com/usynin78-web/AYaK/releases/download/v.0.1.3.dev/linux_32.tar.gz) (40.7 MB)
+- [linux_32arm.tar.gz](https://github.com/usynin78-web/AYaK/releases/download/v.0.1.3.dev/linux_32arm.tar.gz) (38.5 MB)
+- [linux_64.tar.gz](https://github.com/usynin78-web/AYaK/releases/download/v.0.1.3.dev/linux_64.tar.gz) (40.4 MB)
+- [linux_64arm.tar.gz](https://github.com/usynin78-web/AYaK/releases/download/v.0.1.3.dev/linux_64arm.tar.gz) (40.2 MB)
+- [win32.zip](https://github.com/usynin78-web/AYaK/releases/download/v.0.1.3.dev/win32.zip) (48.4 MB)
+- [win64.tar.gz](https://github.com/usynin78-web/AYaK/releases/download/v.0.1.3.dev/win64.tar.gz) (47.3 MB)
+- [win_arm.zip](https://github.com/usynin78-web/AYaK/releases/download/v.0.1.3.dev/win_arm.zip) (44.1 MB)
 <!-- AYaK:RELEASE:END -->
 
 [Browse all releases](https://github.com/usynin78-web/AYaK/releases)
