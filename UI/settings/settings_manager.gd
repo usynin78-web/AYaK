@@ -62,8 +62,14 @@ func load_settings() -> void:
 # Применяет загруженные параметры к игровому окну и движку.
 func apply_settings() -> void:
 	Engine.max_fps = fps_limit
-	DisplayServer.window_set_size(resolution)
-	DisplayServer.window_set_mode(window_mode)
+
+	# На Android полноэкранный режим задаётся параметром Immersive Mode
+	# в export_presets.cfg. Вызов window_set_mode() здесь может сбросить
+	# системные флаги окна и вернуть строку состояния.
+	if OS.get_name() != "Android":
+		DisplayServer.window_set_size(resolution)
+		DisplayServer.window_set_mode(window_mode)
+
 	DisplayServer.window_set_vsync_mode(vsync_mode)
 
 
